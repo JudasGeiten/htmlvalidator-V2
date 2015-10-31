@@ -20,7 +20,7 @@ public class ValidatorServiceTest {
 
 	@Test
 	public void ValidateModelTest() {
-		String path = getClass().getResource("/generatedResult.xmi").getPath();
+		String path = "generated-files/generated.xmi";
 		assertTrue(service.ValidateModel(path));
 	}
 

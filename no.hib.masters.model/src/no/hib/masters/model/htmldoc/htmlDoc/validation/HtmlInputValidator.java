@@ -4,6 +4,8 @@
  */
 package no.hib.masters.model.htmldoc.htmlDoc.validation;
 
+import no.hib.masters.model.htmldoc.htmlDoc.HtmlLabel;
+
 
 /**
  * A sample validator interface for {@link no.hib.masters.model.htmldoc.htmlDoc.HtmlInput}.
@@ -15,4 +17,6 @@ public interface HtmlInputValidator {
 	boolean validate();
 
 	boolean validateType(String value);
+
+	boolean validateLabelledBy(HtmlLabel value);
 }

@@ -269,13 +269,22 @@ public interface HtmlDocPackage extends EPackage {
 	int HTML_INPUT__TYPE = HTML_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Labelled By</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HTML_INPUT__LABELLED_BY = HTML_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Html Input</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HTML_INPUT_FEATURE_COUNT = HTML_ELEMENT_FEATURE_COUNT + 1;
+	int HTML_INPUT_FEATURE_COUNT = HTML_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Html Input</em>' class.
@@ -426,6 +435,17 @@ public interface HtmlDocPackage extends EPackage {
 	EAttribute getHtmlInput_Type();
 
 	/**
+	 * Returns the meta object for the reference '{@link no.hib.masters.model.htmldoc.htmlDoc.HtmlInput#getLabelledBy <em>Labelled By</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Labelled By</em>'.
+	 * @see no.hib.masters.model.htmldoc.htmlDoc.HtmlInput#getLabelledBy()
+	 * @see #getHtmlInput()
+	 * @generated
+	 */
+	EReference getHtmlInput_LabelledBy();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -561,6 +581,14 @@ public interface HtmlDocPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute HTML_INPUT__TYPE = eINSTANCE.getHtmlInput_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Labelled By</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference HTML_INPUT__LABELLED_BY = eINSTANCE.getHtmlInput_LabelledBy();
 
 	}
 

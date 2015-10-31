@@ -127,12 +127,12 @@
 
 
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans'
-		rel='stylesheet' type='text/css' property='stylesheet'>
+		rel='stylesheet' type='text/css' property='stylesheet' />
 
 	<div id="InnloggingsWizard"
 		data-ng-init="skjemaWsURL = '/sd/ws/SkjemaWS.asmx'; InnloggingUtenforSkjema = 'False'; Skjemaid = '800076' ">
 		<div id="innloggingModal" data-ng-show="visModal"
-			data-ng-controller="WizardCtrl" data-ng-cloak>
+			data-ng-controller="WizardCtrl" data-ng-cloak="">
 			<div class="rad" data-ng-show="visSprak">
 				<div class="col span2 offset10">
 					<div class="sprakValg"
@@ -161,7 +161,7 @@
 				</ul>
 			</div>
 			<div class="innhold">
-				<div data-ng-switch data-on="hentAktivStegnavn()">
+				<div data-ng-switch="" data-on="hentAktivStegnavn()">
 					<div class="switch" data-ng-switch-when="InnloggWizardInnLogging">
 						<div class="rad" data-ng-show="skjemainfo.Skjemaid > 0 ">
 							<div class="col span12 center">
@@ -191,7 +191,7 @@
 								data-ng-show="TillattEpost">
 								<div
 									data-ng-class="{true:'border-left', false: ''}[InnloggingsValg.length > 0]">
-									<form name="paalogging" novalidate>
+									<form name="paalogging" id="paalogging" data-novalidate="">
 										<div class="rad">
 											<div class="col span1"></div>
 											<div class="col span11">
@@ -501,7 +501,7 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ToolkitScriptManager1', 'aspn
 
 						<div id="SessionTimer"
 							data-ng-init="sessionTimeout = 20; sessionUrl = '/sd/Status/Session.ashx'"
-							data-ng-cloak>
+							data-ng-cloak="">
 							<div id="sessionModal" class="sessionwarningframe"
 								data-ng-controller="SessionTimerCtrl" data-ng-show="visVarsel">
 								<div class="sessionwarningtext">Nettlesersesjonen er
@@ -708,7 +708,7 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ToolkitScriptManager1', 'aspn
 														<p>
 															Du har rett til å klage på karakteren innen tre uker
 															etter karakteren er publisert eller tre uker etter at du
-															har mottatt begrunnelse på karakteren.<br>
+															har mottatt begrunnelse på karakteren.<br />
 														</p>
 													</div>
 													<fieldset>
@@ -867,13 +867,13 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ToolkitScriptManager1', 'aspn
 															<div>
 																<OL>
 																	<LI>Klikk på Hjelpesymbol der du trenger hjelp til
-																		utfyllingen.<BR>
+																		utfyllingen.<BR />
 																	</LI>
 																	<LI>Skjemaet lagrer svarene underveis i
 																		utfyllingen. Hvis du velger å avbryte ved f.eks. å
 																		lukke nettleservinduet eller trykke på Avbryt-knappen
 																		og deretter bekrefter at du vil avbryte utfyllingen,
-																		vil all informasjon bli borte.<BR>
+																		vil all informasjon bli borte.<BR />
 																	</LI>
 																	<LI>Ingenting sendes inn før du selv ber om det,
 																		ved å velge Send inn-knappen. Den kommer fram etter at
@@ -894,11 +894,11 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ToolkitScriptManager1', 'aspn
 																</div>
 																<h3>Bruk og utfylling</h3>
 																<div>
-																	Fyll ut feltene. </br>
-																	</br>
+																	Fyll ut feltene. <br />
+																	<br/>
 																	<br />Felter markert med * er obligatorisk for
-																	utfylling.</br>
-																	</br>
+																	utfylling.<br />
+																	<br />
 																	<br />Du kan være innaktiv i ca. 20 minutter
 																</div>
 															</div>

@@ -24,7 +24,7 @@ public class ParserServiceTest {
 	@Test
 	public void testGetAllInputNodes() {
 		NodeList res = service.getNodeOfType("input");
-		assertTrue(res.getLength() == 4);
+		assertTrue(res.getLength() == 2);
 	}
 	
 	@Test

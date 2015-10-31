@@ -242,6 +242,15 @@ public class HtmlDocPackageImpl extends EPackageImpl implements HtmlDocPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getHtmlInput_LabelledBy() {
+		return (EReference)htmlInputEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public HtmlDocFactory getHtmlDocFactory() {
 		return (HtmlDocFactory)getEFactoryInstance();
 	}
@@ -282,6 +291,7 @@ public class HtmlDocPackageImpl extends EPackageImpl implements HtmlDocPackage {
 
 		htmlInputEClass = createEClass(HTML_INPUT);
 		createEAttribute(htmlInputEClass, HTML_INPUT__TYPE);
+		createEReference(htmlInputEClass, HTML_INPUT__LABELLED_BY);
 	}
 
 	/**
@@ -333,6 +343,7 @@ public class HtmlDocPackageImpl extends EPackageImpl implements HtmlDocPackage {
 
 		initEClass(htmlInputEClass, HtmlInput.class, "HtmlInput", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getHtmlInput_Type(), ecorePackage.getEString(), "type", "text", 1, 1, HtmlInput.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getHtmlInput_LabelledBy(), this.getHtmlLabel(), null, "labelledBy", null, 1, 1, HtmlInput.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -21,7 +21,7 @@ public class UtilServiceTest {
 
 	@Test
 	public void testStringToXml() {
-		String string = "<child>child 1</child><child>child 2</child>";
+		String string = "<parent><child>child 1</child><child>child 2</child></parent>";
 		
 		try {
 			Document doc = UtilService.ToXml(string);
@@ -32,9 +32,7 @@ public class UtilServiceTest {
 			e.printStackTrace();
 			assertTrue(false);
 		}
-		
 
-		
 	}
 
 }

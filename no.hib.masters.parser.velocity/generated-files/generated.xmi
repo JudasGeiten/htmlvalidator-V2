@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<htmlDoc:DifiForm xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:htmlDoc="http://www.example.org/htmlDoc" SkjemaID="BK0395">
+
+$UtilService.String GenerateRandomElementID()
+
+    <steps stepTitle="validForm">
+        		        <formElements xsi:type="htmlDoc:HtmlLabel" ID="lblFirstname" 
+	        	for="inputFirstname" />
+	    	            		        <formElements xsi:type="htmlDoc:HtmlLabel" ID="lblSurname" 
+	        	for="inputSurname" />
+	    	            		    	    	 <formElements xsi:type="htmlDoc:HtmlInput" ID="inputFirstname"
+	    	 labelledBy="lblFirstname" />
+	            		    	    	 <formElements xsi:type="htmlDoc:HtmlInput" ID="inputSurname"
+	    	 labelledBy="lblSurname" />
+	            </steps>
+    <steps stepTitle="invalidForm">
+        </steps>
+ 
+ </htmlDoc:DifiForm>

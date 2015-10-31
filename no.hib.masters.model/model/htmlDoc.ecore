@@ -24,5 +24,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="HtmlInput" eSuperTypes="#//HtmlElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral="text"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="labelledBy" lowerBound="1"
+        eType="#//HtmlLabel"/>
   </eClassifiers>
 </ecore:EPackage>

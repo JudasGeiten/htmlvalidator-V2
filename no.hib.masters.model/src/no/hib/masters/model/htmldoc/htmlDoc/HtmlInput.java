@@ -13,6 +13,7 @@ package no.hib.masters.model.htmldoc.htmlDoc;
  * </p>
  * <ul>
  *   <li>{@link no.hib.masters.model.htmldoc.htmlDoc.HtmlInput#getType <em>Type</em>}</li>
+ *   <li>{@link no.hib.masters.model.htmldoc.htmlDoc.HtmlInput#getLabelledBy <em>Labelled By</em>}</li>
  * </ul>
  *
  * @see no.hib.masters.model.htmldoc.htmlDoc.HtmlDocPackage#getHtmlInput()
@@ -46,5 +47,31 @@ public interface HtmlInput extends HtmlElement {
 	 * @generated
 	 */
 	void setType(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Labelled By</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Labelled By</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Labelled By</em>' reference.
+	 * @see #setLabelledBy(HtmlLabel)
+	 * @see no.hib.masters.model.htmldoc.htmlDoc.HtmlDocPackage#getHtmlInput_LabelledBy()
+	 * @model required="true"
+	 * @generated
+	 */
+	HtmlLabel getLabelledBy();
+
+	/**
+	 * Sets the value of the '{@link no.hib.masters.model.htmldoc.htmlDoc.HtmlInput#getLabelledBy <em>Labelled By</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Labelled By</em>' reference.
+	 * @see #getLabelledBy()
+	 * @generated
+	 */
+	void setLabelledBy(HtmlLabel value);
 
 } // HtmlInput

@@ -24,3 +24,4 @@ Package htmlDoc <http://www.example.org/htmlDoc>
 
   Class HtmlInput -> HtmlElement
     Attribute type : EString<<1..1>>
+    Reference labelledBy : HtmlLabel<<1..1>>

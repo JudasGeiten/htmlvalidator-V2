@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.UUID;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -20,7 +21,7 @@ public abstract class UtilService {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = factory.newDocumentBuilder();
 
-		Document doc = builder.parse(new InputSource(new StringReader(string)));
+		Document doc = builder.parse(new InputSource(new StringReader(CleanXmlDocument(string))));
 		return doc;
 
 	}
@@ -40,6 +41,16 @@ public abstract class UtilService {
 		} finally {
 			br.close();
 		}
+	}
+	
+	private static String CleanXmlDocument(String string)
+	{
+		String res = string.replace("&", "&amp;");
+		return res;
+	}
+	
+	public static String GenerateRandomElementID() {
+		return UUID.randomUUID().toString();
 	}
 
 }

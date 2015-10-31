@@ -3,15 +3,18 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xmlns:htmlDoc="http://www.example.org/htmlDoc" SkjemaID="$formId">
 
+$UtilService.String GenerateRandomElementID()
+
 #foreach($key in $formSteps.keySet())
     <steps stepTitle="$key.getAttributes().getNamedItem("id").getNodeValue()">
     #foreach($item in $formSteps.get($key))
-	    #if($item.getNodeName() == "input")
-	    	 <formElements xsi:type="htmlDoc:HtmlInput" ID="$item.getAttributes().getNamedItem("id").getNodeValue()" />
-	    #end
-	    #if($item.getNodeName() == "label")
+    	#if($item.getNodeName() == "label")
 	        <formElements xsi:type="htmlDoc:HtmlLabel" ID="$item.getAttributes().getNamedItem("id").getNodeValue()" 
 	        	for="$item.getAttributes().getNamedItem("for").getNodeValue()" />
+	    #end
+	    #if($item.getNodeName() == "input")
+	    	 <formElements xsi:type="htmlDoc:HtmlInput" ID="$item.getAttributes().getNamedItem("id").getNodeValue()"
+	    	 labelledBy="$item.getAttributes().getNamedItem("labelledBy").getNodeValue()" />
 	    #end
     #end
     </steps>

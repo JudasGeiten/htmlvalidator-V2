@@ -5,6 +5,17 @@
 	<artifactId>no.hib.masters.parser.velocity</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Html Parser</name>
+	<properties>
+		<RESOURCE_PATH>${project.basedir}/src/test/resources</RESOURCE_PATH>
+	</properties>
+	<build>
+		<resources>
+			<resource>
+				<directory>${RESOURCE_PATH}</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+	</build>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
