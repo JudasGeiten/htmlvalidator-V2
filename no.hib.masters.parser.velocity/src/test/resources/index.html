@@ -1,0 +1,61 @@
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Form example</title>
+</head>
+
+<style>
+.inputForm {
+	background-color:#red;
+	padding: 3em;
+	width:500px;
+	margin:auto;
+	margin-bottom:5em;
+}
+
+.inputLabel {
+	font-weight:bold;
+	color: #0088dd;
+}
+
+.inputField {
+	padding: 0.5em 0;
+	border-radius: 5px;
+	border: solid grey 1px;
+}
+
+.inputButton {
+	padding:0.5em;
+	float:right;
+	clear:both;
+	margin-top:3em;
+}
+
+</style>
+
+<body>
+	<fieldset class="inputForm">
+		<legend><strong>Form</strong></legend>
+		<form id="validForm">
+			<label class="inputLabel" for="inputFirstname"  id="lblFirstname">Firstname</label>
+			<input class="inputField" type="text" id="inputFirstname" />
+			<label class="inputLabel"  for="inputSurname" id="lblSurname">Surname</label>
+			<input class="inputField" type="text" id="inputSurname" />
+			<button class="inputButton" type="submit">Submit</button>
+		</form>		
+	</fieldset>
+	
+	<fieldset class="inputForm">
+		<legend><strong>Form</strong></legend>
+		<form id="invalidForm">
+			<input class="inputField" type="text" id="inputFirstname" placeholder="Firstname"/>
+			<input class="inputField" type="text" id="inputSurname" placeholder="Surname"/>
+			<button class="inputButton" type="submit">Submit</button>
+		</form>		
+	</fieldset>
+</body>
+</html>

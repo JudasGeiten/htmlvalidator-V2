@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="nb">
+<head>
+<base href="/sd/" />
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<script src="/sd/scripts/jquery-1.9.0.min.js" type="text/javascript"></script>
+<script src="/sd/scripts/jquery-ui-1.10.0.min.js" type="text/javascript"></script>
+<script src="/sd/scripts/jquery.cookie.js" type="text/javascript"></script>
+
+<link href="/sd/content/themes/base/minified/jquery-ui.min.css"
+	rel="stylesheet" />
+<link rel="stylesheet" href="/sd/css/normalize.css?149942" />
+<link href="/sd/css/sd_skjema.css" rel="stylesheet" />
+<link href="/sd/css/sd_front.css" rel="stylesheet" />
+<link href="/sd/css/sd_InnloggingsWizard.css" rel="stylesheet" />
+<link href="/sd/css/skjema.min.css" rel="stylesheet" />
+<link href="/sd/css/front.min.css" rel="stylesheet" />
+<link href="/sd/css/grid.min.css" rel="stylesheet" />
+<link href="/sd/css/InnloggingsWizard.min.css" rel="stylesheet" />
+<script src="/sd/Scripts/Angular/components/angular.min.js"></script>
+<script src="/sd/Scripts/Angular/components/angular-resource.min.js"></script>
+<script src="/sd/Scripts/Angular/services/services.js"></script>
+<script src="/sd/Scripts/Angular/directives/directives.js"></script>
+<script src="/sd/Scripts/Angular/SessionTimer.js"></script>
+<script src="/sd/Scripts/Angular/InnloggingWizard.js"></script>
+<script src="/sd/Scripts/Angular/AppBootstrapping.js"></script>
+
+
+<script src="/sd/scripts/jquery.ui.datepicker-no.js"
+	type="text/javascript"></script>
+<script src="/sd/scripts/jquery.inputmask.bundle.min.js"
+	type="text/javascript"></script>
+
+<style>
+.tabell {
+	display: table;
+	width: 100%;
+}
+
+.hgruppe {
+	display: table-header-group;
+}
+
+.rgruppe {
+	display: table-row-group;
+}
+
+.cssrad {
+	display: table-row;
+}
+
+.celle {
+	display: table-cell;
+	padding-bottom: 15px;
+	vertical-align: middle;
+}
+
+.celle .celle {
+	padding-bottom: 0;
+	vertical-align: initial;
+}
+
+.celle>*:not (.tabell ) {
+	box-sizing: border-box;
+}
+</style>
+
+<script type="text/javascript">
+        $(document).ready(function () {
+            //angular.bootstrap($("#SessionTimer"), ['SessionTimer']);
+
+            $(document).on('mousemove keypress', function () {
+                angular.element('#sessionModal').scope().oppdaterAktivitetsTimer();
+            });
+
+        });
+    </script>
+
+
+
+<script type="text/javascript" src="/sd/scripts/jquery.acos.js?149942"></script>
+
+
+
+<script type="text/javascript">
+            function getParameterByName(name) {
+                name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+                var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                    results = regex.exec(location.search);
+                return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+            }
+
+            $(document).ready(function () {
+                $("#brukerLogginn").click(function (event) {
+                    event.preventDefault();
+                    angular.element('#innloggingModal').scope().apneWizard(-1, false);
+                    $(document).scrollTop($("#head").offset().top);
+                });
+
+                
+
+                if (getParameterByName("steg") != "") {
+                    var skjemaidFraUrl = getParameterByName("skjemaid") === "" ? "0" : getParameterByName("skjemaid");
+                    angular.element('#innloggingModal').scope().apneWizard(skjemaidFraUrl, false);
+                }
+            });
+
+            $(document).mousedown(function (e) {
+                var container = $("#innloggingModal");
+
+                if (!container.hasClass("mandatory") && !container.is(e.target)
+                    && container.has(e.target).length === 0) {
+                    angular.element('#innloggingModal').scope().lukkWizard();
+                }
+            });
+        </script>
+<title>Begrunnelse for karaktersetting</title>
+</head>
+<body>
+
+
+
+
+
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans'
+		rel='stylesheet' type='text/css' property='stylesheet'>
+
+	<div id="InnloggingsWizard"
+		data-ng-init="skjemaWsURL = '/sd/ws/SkjemaWS.asmx'; InnloggingUtenforSkjema = 'False'; Skjemaid = '800076' ">
+		<div id="innloggingModal" data-ng-show="visModal"
+			data-ng-controller="WizardCtrl" data-ng-cloak>
+			<div class="rad" data-ng-show="visSprak">
+				<div class="col span2 offset10">
+					<div class="sprakValg"
+						data-ng-click="visSprakVelger = !visSprakVelger">
+						<img data-ng-src="/sd/img/flagg/{{valgtSprakNavn}}.png" src="."
+							width="30" height="16" alt="{{valgtSprakNavn}}" /> <a
+							class="sprakTekst">{{valgtSprakNavn}}</a> <img
+							class="dropdown-img" src="/sd/img/nedtrekksliste.png" alt=""
+							width="16" height="16" />
+					</div>
+					<div class="sprakVelger" data-ng-show="visSprakVelger">
+						<ul>
+							<li data-ng-repeat="sprak in skjemainfo.SkjemaSprak"
+								data-ng-click="endreSprak(sprak.SprakNavn)"><img
+								data-ng-src="/sd/img/flagg/{{sprak.SprakNavn}}.png" src="."
+								width="30" height="16" alt="{{sprak.SprakNavn}}" /> <span>{{sprak.SprakNavn}}</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div id="wizardSteg">
+				<ul class="wizardStegListe" data-ng-show="steg.length > 1">
+					<li data-ng-repeat="s in steg" data-ng-class="hentStegCss($index)">{{sprakVariabler[s.stegnavn]
+						}}</li>
+				</ul>
+			</div>
+			<div class="innhold">
+				<div data-ng-switch data-on="hentAktivStegnavn()">
+					<div class="switch" data-ng-switch-when="InnloggWizardInnLogging">
+						<div class="rad" data-ng-show="skjemainfo.Skjemaid > 0 ">
+							<div class="col span12 center">
+								<b><span data-ng-hide="valgfriInnlogging">Krever
+										innlogging:</span> <span data-ng-hide="!valgfriInnlogging">Valgfri
+										innlogging til:</span> {{skjemainfo.SkjemaNavn}}</b>
+							</div>
+						</div>
+						<div class="rad">
+							<div
+								data-ng-class="{false:'col span6 offset3', true:'col span6'}[TillattEpost]"
+								data-ng-show="InnloggingsValg.length > 0">
+								<ul>
+									<li class="innloggrad"
+										data-ng-repeat="innlogging in InnloggingsValg"
+										data-ng-click="velgInnlogging(innlogging.InnloggingsLink)">
+										<div class="{{innlogging.InnloggingsType}}"></div> <span>{{sprakVariabler[innlogging.InnloggingsTekst]}}</span>
+									</li>
+								</ul>
+							</div>
+							<hr class="horisontalInnloggingsSkille"
+								data-ng-show="InnloggingsValg.length > 0" />
+							<label class="border-tekst-horisontal"
+								data-ng-show="InnloggingsValg.length > 0">{{sprakVariabler["InnloggWizardEller"]}}</label>
+							<div
+								data-ng-class="{true: 'col span6', false:'col span6 offset3'}[InnloggingsValg.length > 0]"
+								data-ng-show="TillattEpost">
+								<div
+									data-ng-class="{true:'border-left', false: ''}[InnloggingsValg.length > 0]">
+									<form name="paalogging" novalidate>
+										<div class="rad">
+											<div class="col span1"></div>
+											<div class="col span11">
+												<b>{{sprakVariabler["LoggInnEpost"]}}</b>
+											</div>
+										</div>
+										<div id="innloggingsInput" data-ng-hide="visLoading">
+											<div class="rad">
+												<div class="col span1"></div>
+												<div class="col span11">
+													<span class="feilmelding" data-ng-show="visFeilmelding">*Feil
+														brukernavn eller passord. Vennligst prøv igjen.</span><br /> <label
+														for="brukernavn"
+														data-ng-show="innlogging.brukernavn.length > 0">{{sprakVariabler["InnloggWizardBrukernavn"]}}</label>
+													<input type="text" id="brukernavn" name="brukernavn"
+														data-ng-model="innlogging.brukernavn"
+														data-ng-enter="logginn(innlogging)"
+														placeholder="{{sprakVariabler['InnloggWizardBrukernavn']}}"
+														data-ng-disabled="!TillattEpost"
+														title="{{sprakVariabler['InnloggWizardBrukernavn']}}"
+														required="" /> <span class="feilmelding"
+														data-ng-show="paalogging.brukernavn.$dirty && paalogging.brukernavn.$error.required">*Brukernavn
+														kan ikke være tom</span>
+												</div>
+											</div>
+											<div class="rad">
+												<div class="col span1">
+													<label data-ng-show="InnloggingsValg.length > 0"
+														class="border-tekst-vertikal">{{sprakVariabler["InnloggWizardEller"]}}</label>
+												</div>
+												<div class="col span11">
+													<label for="passord"
+														data-ng-show="innlogging.passord.length > 0">{{sprakVariabler["InnloggWizardPassord"]}}</label>
+													<input type="password" id="passord"
+														data-ng-model="innlogging.passord"
+														placeholder="{{sprakVariabler['InnloggWizardPassord']}}"
+														data-ng-disabled="!TillattEpost" title="Passord"
+														name="passord" required=""
+														data-ng-enter="logginn(innlogging)" /> <span
+														class="feilmelding"
+														data-ng-show="paalogging.passord.$dirty && paalogging.passord.$error.required">*Passord
+														kan ikke være tom</span>
+												</div>
+											</div>
+										</div>
+										<div class="innloggingsLoading" data-ng-show="visLoading">
+											<div class="col span4 offset2">
+												<img data-ng-src="/sd/img/loading.gif" alt="" src="." />
+											</div>
+										</div>
+										<div class="rad">
+											<div class="col span8"></div>
+
+											<div class="col span4">
+												<button name="logginnKnapp" class="nesteBtn" type="button"
+													data-ng-click="logginn(innlogging)"
+													data-ng-disabled="!TillattEpost || visLoading || paalogging.$invalid"
+													title="Logg inn">{{sprakVariabler["LoggInn"]}}</button>
+											</div>
+										</div>
+									</form>
+									<div class="rad">
+										<div class="col span2"></div>
+										<div class="col span10">
+											<a href="" data-ng-click="glemtPassord()">{{sprakVariabler["LoginGlemtPassordTekst"]}}</a>
+											<a href="" data-ng-click="OpprettBruker()">{{sprakVariabler["LoginNyBrukerTekst"]}}</a>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="switch" data-ng-switch-when="InnloggWizardPersonvern">
+						<div data-ng-bind-html="renderHtml(personvern)"
+							class="Wizardpersonvern" tabindex="0"></div>
+						<hr />
+						<div class="rad">
+							<div class="col span10"></div>
+							<div class="col span2">
+								<button class="nesteBtn" type="button"
+									data-ng-click="godkjennPersonvern()">{{sprakVariabler["InnloggWizardAksepter"]}}</button>
+							</div>
+						</div>
+					</div>
+					<div class="switch" data-ng-switch-when="InnloggWizardOppgiEpost">
+						<div class="rad">
+							<div class="col span12">
+								<p>{{sprakVariabler["GlemtPassordTekst"]}}</p>
+							</div>
+						</div>
+						<div data-ng-hide="visLoading">
+							<div class="rad">
+								<div class="col span8 offset1" data-ng-show="visFeilmelding">
+									<span class="feilmelding"> *Epostadressen er ikke
+										registrert </span>
+								</div>
+							</div>
+							<div class="rad">
+								<div class="col span8 offset1">
+									<input type="email" placeholder="E-post"
+										data-ng-model="brukerEpost"
+										data-ng-enter="SendEpostGlemtPassord(brukerEpost)" />
+								</div>
+								<div class="col span2">
+									<button class="nesteBtn" type="button"
+										data-ng-click="SendEpostGlemtPassord(brukerEpost)">{{sprakVariabler["GlemtPassordButtonSendInn"]}}</button>
+								</div>
+							</div>
+						</div>
+						<div class="rad" data-ng-show="visLoading">
+							<div class="innloggingsLoading">
+								<div class="col span4 offset4">
+									<img data-ng-src="/sd/img/loading.gif" alt="" src="." />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="switch" data-ng-switch-when="InnloggWizardNyttPassord">
+						<div class="rad">
+							<div class="col span12">
+								<p data-ng-show="nullNokkel == ''">Du vil straks motta en
+									e-post med kode. Trykk på lenken i e-posten for å gå videre i
+									prosessen</p>
+								<p data-ng-show="nullNokkel != ''">
+									{{sprakVariabler["NullstillPassordTekst"]}}</p>
+							</div>
+						</div>
+						<div class="rad">
+							<div class="col span10"></div>
+							<div class="col span2">
+								<button class="tilbakestillBtn" type="button"
+									data-ng-show="nullNokkel != ''"
+									data-ng-click="TilbakestillPassord(nullNokkel)">{{sprakVariabler["NullstillPassordButtonTekst"]}}</button>
+							</div>
+						</div>
+					</div>
+					<div class="switch"
+						data-ng-switch-when="InnloggWizardBrukerOpplysninger"
+						data-ng-controller="RegistrerCtrl">
+						<div data-acos-registrer-bruker=""
+							data-sprak-variabler="sprakVariabler" data-model="bruker"
+							data-skjemaid="skjemainfo.Skjemaid"
+							data-on-register="nesteSteg()"></div>
+					</div>
+					<div class="switch" data-ng-switch-when="InnloggWizardAktiver">
+						<div class="rad">
+							<div class="col span12" data-ng-show="aktiveringsnokkel == ''">
+								<p>Du vil snart motta en e-post med informasjon om
+									aktivering av brukerkontoen din. Trykk på lenken i e-posten for
+									å gå videre i prosessen</p>
+							</div>
+							<div class="col span12" data-ng-show="aktiveringVellykket">
+								<p>Kontoen din er nå aktivert, trykk på knappen under for å
+									gå videre til skjemaet</p>
+							</div>
+							<div class="col span12"
+								data-ng-show="aktiveringsnokkel != '' && !aktiveringVellykket">
+								<p>Aktiveringslenken du har trykket på er ikke lengre gyldig</p>
+							</div>
+							<div class="col span2 offset10">
+								<button class="nesteBtn" type="button"
+									data-ng-click="nesteSteg()"
+									data-ng-disabled="!aktiveringVellykket"
+									data-ng-show="aktiveringsnokkel != ''">Neste</button>
+							</div>
+						</div>
+					</div>
+					<div class="switch" data-ng-switch-when="InnloggWizardSprak">
+						<div class="span4 offset4">
+							<ul>
+								<li data-ng-repeat="sprak in skjemainfo.SkjemaSprak"
+									data-ng-click="endreSprak(sprak.SprakNavn, true)"><img
+									data-ng-src="/sd/img/flagg/{{sprak.SprakNavn}}.png" src="."
+									width="60" height="36" alt="{{sprak.SprakNavn}}" /> <span>{{sprak.SprakNavn}}</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="switch" data-ng-switch-when="InnloggWizardSkjema">
+						<div class="rad">
+							<div class="col span8 offset4">
+								<img alt="" src="/sd/img/ajax-loader.gif" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="lightbox-background" class="lightbox-background"></div>
+	<form name="aspnetForm" method="post"
+		action="/sd/skjema/Acos076/Begrunnelse_for_karaktersetting"
+		onsubmit="javascript:return WebForm_OnSubmit();" id="aspnetForm"
+		enctype="multipart/form-data">
+		<div>
+			<input type="hidden" name="ctl00_ToolkitScriptManager1_HiddenField"
+				id="ctl00_ToolkitScriptManager1_HiddenField" value="" /> <input
+				type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" /> <input
+				type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+			<input type="hidden" name="__LASTFOCUS" id="__LASTFOCUS" value="" />
+			<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE"
+				value="63af2180-da81-4a91-90b5-e094a0763471" />
+		</div>
+
+		<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+		<script
+			src="/sd/WebResource.axd?d=gS18IbWWeQSQVRVni4qKva-E8zEN-sk_9eqJDxtQnFlOd8SEi5Ik470MOcqo0cZi4whuM7HzUTyK2LkaJDbs9AmlhPxwRpKOfFUrx5IZt701&amp;t=635586452020000000"
+			type="text/javascript"></script>
+
+
+		<script
+			src="/sd/ScriptResource.axd?d=ljp0OHVmGX3jZFq8ZilRupiEyy77vvAFNMYQ7-05B4YqCllE-yntCZfRrk4P4li9Jhl03-loco-E9fy4Q7e7IlKfs8uZZFT41iMB94zgJUY0mE1hLQyBAUesRjONUISYx-P2lqtSpt6wMX4yGmn-W3UKduk4NlFM5mKRsuAHavE1&amp;t=fffffffffe82416f"
+			type="text/javascript"></script>
+		<script
+			src="/sd/ScriptResource.axd?d=m5PWcmcsoR_5h3LKRqpMBcnrh9fcGdhU2UhL0FnTIyq1BoSvDN2dNnzlg30HxVjqOuVH3Wjw6SqiPnhWLgjRBPvjgJmB17aR7fVtilIjNyF3824IflDeza96opmO0tE-SA60r77xknNQov93Uu86BA2&amp;t=ffffffffec54f2d7"
+			type="text/javascript"></script>
+		<script type="text/javascript">
+//<![CDATA[
+if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side framework failed to load.');
+//]]>
+</script>
+
+		<script
+			src="/sd/ScriptResource.axd?d=ewSrBF7es2DHNQoqbMNqxeAycF6tPQVp1d7yapz8gR_GzbDs1oL-wkq6oCtbuCSTetZwmEL6QktgMPxENiijs5EVA-AtP3NDgVnevkohK08u-o5MkpId4MqOOL_D2yY_TSnj6POKr5VsJ19fyuriLw2&amp;t=ffffffffec54f2d7"
+			type="text/javascript"></script>
+		<script
+			src="/sd/WebResource.axd?d=g7C4fWryY8rWuMrb0hZOIrHSMrq8p7Ptf3gsbvJGLvEFuW8a0ku93isarROMk8TZya2ymbNVjE77No2oWQlUX_3_skJAsxyTt2dUtgFQQPN0rWvrweuOd6PFA9jqiSXcmDJCBr4m2_XQEGfVR4ZonKRxvCDaZL10thWoo4sC1Us1&amp;t=635799864056130000"
+			type="text/javascript"></script>
+		<script type="text/javascript">
+//<![CDATA[
+function WebForm_OnSubmit() {
+if (typeof(ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) return false;
+return true;
+}
+//]]>
+</script>
+
+		<div>
+
+			<input type="hidden" name="__VIEWSTATEGENERATOR"
+				id="__VIEWSTATEGENERATOR" value="1B2619DD" /> <input type="hidden"
+				name="__EVENTVALIDATION" id="__EVENTVALIDATION"
+				value="/wEdABfw2fj8xfWyeC/ATleKhWgizrU2V+09xBUmE/Ny8RmVgLO/ORWTjEtvJGmDhG/NngZDsOAgRmAbdic7kbsbuVir1a6Pa3XICpEJQnu0zJz+PZRRLvS81U+R3fMJB6ohtj+g9o786J987qTqxofZBBLoP0BXC5NA88Q/7RAlU6nl8UuBjAjgud5Vmckb7WjLJLrlcYBaQdaeHMBeGvlo8op8xoqSfwXGh3bHa5MLJKiovr68H5ibtG8kMBfNEq1544qipzANcv/uqkFLfUYoVFUDjEotU7V4PYfaFeQmFKcVW0K0CCsyxrdYyKYP4mkLvaLXhMNmTKaNSV2Q9ILZdtkLiDW3GTEcqJKaxtKvmZ9PhwRW+ElPFCRK8Y/9SE1OaPxn8pbR2zPjhvjM11PN9ajGLRLv5Ar5YtEsQOHkdwJjJ6RQXJpmuw7NTcSuyiSDW3QxSIZbqMjpcGx7RKFiWQ42rFCLioYdLyZ9iz69y0foL905sBzmvDing2vW0GlUHsVkEMNXyPZfPwOANITvWqX4" />
+		</div>
+		<script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ToolkitScriptManager1', 'aspnetForm', ['tctl00$innhold$ctl00$upWrapper',''], [], [], 90, 'ctl00');
+//]]>
+</script>
+
+
+		<div id="head">
+			<div class="beholder">
+				<div class="rad">
+					<div class="col span8">
+						<a id="ctl00_hlLogo"
+							href="https://skjema.acos.no/Selvbetjening/MinSide.aspx?MId1=1022"><img
+							id="ctl00_imgLogo" class="logo" src="/sd/kunde/logo.png"
+							alt="Logo - leder tilbake til skjemaoversikten"
+							style="border-width: 0px;" /></a>
+					</div>
+					<div class="col span4">
+
+
+						<div class="rad">
+							<div class="col span12">
+								<div id="user">
+
+									Du er ikke innlogget! <a id="brukerLogginn"
+										href="/sd/login/loginvalg.aspx">Logg inn</a> <br />
+
+
+
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="main">
+			<div class="beholder">
+				<div class="rad">
+					<div class="span12">
+
+
+
+
+						<div id="SessionTimer"
+							data-ng-init="sessionTimeout = 20; sessionUrl = '/sd/Status/Session.ashx'"
+							data-ng-cloak>
+							<div id="sessionModal" class="sessionwarningframe"
+								data-ng-controller="SessionTimerCtrl" data-ng-show="visVarsel">
+								<div class="sessionwarningtext">Nettlesersesjonen er
+									utløpt, og utfylling som ikke er lagret kan være tapt.
+									Vennligst last siden på nytt for å fortsette på skjemaet.</div>
+							</div>
+
+						</div>
+
+
+
+						<script type="text/javascript">
+            $(document).ready(function () {
+                if (('False' === 'True') && getParameterByName("steg") == "") {
+                    angular.element('#innloggingModal').scope().apneWizard('800076', true);
+                }
+            });
+            function getParameterByName(name) {
+                name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+                var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                    results = regex.exec(location.search);
+                return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+            }
+        </script>
+
+
+						<div class="rad">
+							<div class="col span12">
+								<a id="ctl00_innhold_ctl00_test"
+									href="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$innhold$ctl00$test&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, true))"
+									style="display: none;"> test</a>
+								<script type="text/javascript">
+    var okeyToLeave = false;
+
+    function pageLoad() {
+        okeyToLeave = false;
+        $("body").acosinit('/sd/');
+        $('#log .logframe').height($(window).height() - 100);
+        $('#log .logframe section').height($(window).height() - 130);
+        if (typeof (macro_init_reinit) !== 'undefined') macro_init_reinit();
+
+        $('.aw input[type=submit]').click(function () {
+            okeyToLeave = true;
+        });
+        $('.aw :input').change(function () {
+            $('#hasChanged').val('true');
+        });
+    }
+
+    $(function () {
+        $("body").data("orghjelp", $(".awInformasjonTekst").html());
+        $(window).resize(function () {
+            $('#log .logframe').height($(this).height() - 100);
+            $('#log .logframe section').height($(this).height() - 130);
+        });
+    });
+
+    window.onbeforeunload = function () {
+        if (!okeyToLeave && $('#hasChanged').val() === 'true') {
+            return "Du har ulagrede endringer i skjema";
+        }
+    }
+</script>
+								<input type="hidden" id="lf" value="" />
+								<div id="ctl00_innhold_ctl00_upWrapper">
+
+									<div class="rad">
+										<div class="col span3"></div>
+										<div class="col span6">
+											<h1 id="skjemanavn" tabindex="0">Begrunnelse for
+												karaktersetting</h1>
+										</div>
+										<div class="col span3"></div>
+									</div>
+									<h2 style="display: none;">Skjemautfylling</h2>
+									<div id="ctl00_innhold_ctl00_ctl02" class="aw">
+										<div class="rad">
+											<div class="col span3">
+												<map name="awNavigasjon">
+													<div class="awSideNavigasjon"
+														id="ctl00_innhold_ctl00_ctl02_sn">
+														<ol class="awSideNavigasjonContainer">
+															<li
+																class="awSideNavigasjonRotSteg awSideNavigasjonStegAktiv"
+																id="ctl00_innhold_ctl00_ctl02_4981a9621fb04ec3867148a790d9765f"
+																title="Begrunnelse for karaktersetting"><input
+																type="hidden" name="ctl00$innhold$ctl00$ctl02$sn$ctl03"
+																value="0" /><input type="submit"
+																name="ctl00$innhold$ctl00$ctl02$sn$ctl04"
+																value="Begrunnelse for karaktersetting"
+																id="ctl00_innhold_ctl00_ctl02_sn_ctl04" /></li>
+															<li class="awSideNavigasjonRotSteg"
+																id="ctl00_innhold_ctl00_ctl02_ctl08"
+																title="Kontroller skjema"><input type="hidden"
+																name="ctl00$innhold$ctl00$ctl02$sn$ctl07" value="0" /><input
+																type="submit" name="ctl00$innhold$ctl00$ctl02$sn$ctl08"
+																value="Kontroller skjema"
+																id="ctl00_innhold_ctl00_ctl02_sn_ctl08" /></li>
+														</ol>
+													</div>
+												</map>
+											</div>
+											<div class="col span7">
+												<div class="awInnhold">
+													<fieldset>
+														<legend tabindex="0"> Personopplysninger </legend>
+														<div class="skjemagruppe">
+															<div class="rad w50">
+																<div class="col span4">
+																	<label
+																		for="ctl00_innhold_ctl00_ctl02_ctl05_9e9ec47c755244fabd18cf34b9c99011">Studentnummer
+																		*</label>
+																</div>
+																<div class="col span8 verdi">
+																	<input
+																		name="ctl00$innhold$ctl00$ctl02$ctl05$9e9ec47c755244fabd18cf34b9c99011"
+																		type="text"
+																		id="ctl00_innhold_ctl00_ctl02_ctl05_9e9ec47c755244fabd18cf34b9c99011"
+																		class=" w50" /><span
+																		id="ctl00_innhold_ctl00_ctl02_ctl05_ctl05"
+																		class="error" style="color: Red; display: none;">Studentnummer
+																		må fylles ut</span>
+																</div>
+															</div>
+															<div class="rad multi">
+																<div class="col span4">
+																	<label
+																		for="ctl00_innhold_ctl00_ctl02_ctl05_2442c9b3614649ef948ee64225fd382f">Fornavn
+																		*</label>/<label
+																		for="ctl00_innhold_ctl00_ctl02_ctl05_d3d2022d8037459f8926363f7d1c931f">Etternavn
+																		*</label>
+																</div>
+																<div class="col span8">
+																	<div class="skjemagruppe">
+																		<div class="rad">
+																			<div class="col span6 verdi">
+																				<input
+																					name="ctl00$innhold$ctl00$ctl02$ctl05$2442c9b3614649ef948ee64225fd382f"
+																					type="text"
+																					id="ctl00_innhold_ctl00_ctl02_ctl05_2442c9b3614649ef948ee64225fd382f" /><span
+																					id="ctl00_innhold_ctl00_ctl02_ctl05_ctl12"
+																					class="error" style="color: Red; display: none;">Fornavn
+																					må fylles ut</span>
+																			</div>
+																			<div class="col span6 verdi">
+																				<input
+																					name="ctl00$innhold$ctl00$ctl02$ctl05$d3d2022d8037459f8926363f7d1c931f"
+																					type="text"
+																					id="ctl00_innhold_ctl00_ctl02_ctl05_d3d2022d8037459f8926363f7d1c931f" /><span
+																					id="ctl00_innhold_ctl00_ctl02_ctl05_ctl14"
+																					class="error" style="color: Red; display: none;">Etternavn
+																					må fylles ut</span>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="rad">
+																<div class="col span4">
+																	<label
+																		for="ctl00_innhold_ctl00_ctl02_ctl05_77b8e31d26e143a1948df8620c9cd398">E-post
+																		*</label>
+																</div>
+																<div class="col span8 verdi">
+																	<input
+																		name="ctl00$innhold$ctl00$ctl02$ctl05$77b8e31d26e143a1948df8620c9cd398"
+																		type="text"
+																		id="ctl00_innhold_ctl00_ctl02_ctl05_77b8e31d26e143a1948df8620c9cd398" /><span
+																		id="ctl00_innhold_ctl00_ctl02_ctl05_ctl21"
+																		class="error" style="color: Red; display: none;">E-post
+																		må fylles ut</span><span
+																		id="ctl00_innhold_ctl00_ctl02_ctl05_ctl22"
+																		class="error" style="color: Red; display: none;">E-post
+																		må være en epostadresse.</span>
+																</div>
+															</div>
+															<div class="rad w50">
+																<div class="col span4">
+																	<label
+																		for="ctl00_innhold_ctl00_ctl02_ctl05_8b148def167e4271a406894d5aa9e1e0">Telefonnummer
+																		*</label>
+																</div>
+																<div class="col span8 verdi">
+																	<input
+																		name="ctl00$innhold$ctl00$ctl02$ctl05$8b148def167e4271a406894d5aa9e1e0"
+																		type="text"
+																		id="ctl00_innhold_ctl00_ctl02_ctl05_8b148def167e4271a406894d5aa9e1e0"
+																		class="tlf w50" /><span
+																		id="ctl00_innhold_ctl00_ctl02_ctl05_ctl27"
+																		class="error" style="color: Red; display: none;">Telefonnummer
+																		må fylles ut</span><span
+																		id="ctl00_innhold_ctl00_ctl02_ctl05_ctl28"
+																		class="error" style="color: Red; display: none;">Telefonnummer
+																		må være et telefonnummer med 8 siffer</span>
+																</div>
+															</div>
+														</div>
+													</fieldset>
+													<div class="infotekst">
+														<p>Fristen for å be om begrunnelse er 1 uke etter
+															sensuren har falt. Sensor velger om begrunnelsen gis
+															muntlig eller skriftlig. Begrunnelsen gis normalt innen
+															to uker etter studenten har bedt om det.</p>
+														<p>
+															Du har rett til å klage på karakteren innen tre uker
+															etter karakteren er publisert eller tre uker etter at du
+															har mottatt begrunnelse på karakteren.<br>
+														</p>
+													</div>
+													<fieldset>
+														<legend tabindex="0"> Ønsker begrunnelse for
+															karakterfastsetting i </legend>
+														<div class="skjemagruppe">
+															<div class="rad">
+																<div class="col span4">
+																	<span tabindex="0">Består eksamen av flere
+																		deler? *</span><img src="/sd/img/hjelp.png"
+																		alt="Dersom en eksamen består av flere deler må det spesifiseres hvilken del, oppgave eller arbeid en ber om begrunnelse for"
+																		class="hjelp" tabindex="0" title="Hjelpetekst" />
+																</div>
+																<div class="col span8 verdi radio">
+																	<div class="skjemagruppe">
+																		<div class="rad">
+																			<div class="col">
+																				<input
+																					id="ctl00_innhold_ctl00_ctl02_ctl07_ctl06_ctl00"
+																					type="radio"
+																					name="ctl00$innhold$ctl00$ctl02$ctl07$ctl06$25176852-469e-413d-9a8c-b4dacbea2c80"
+																					value="ctl00"
+																					onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$innhold$ctl00$ctl02$ctl07$ctl06$ctl00\&#39;,\&#39;\&#39;)&#39;, 0)" /><label
+																					for="ctl00_innhold_ctl00_ctl02_ctl07_ctl06_ctl00">Ja</label>
+																			</div>
+																			<div class="col">
+																				<input
+																					id="ctl00_innhold_ctl00_ctl02_ctl07_ctl06_ctl01"
+																					type="radio"
+																					name="ctl00$innhold$ctl00$ctl02$ctl07$ctl06$25176852-469e-413d-9a8c-b4dacbea2c80"
+																					value="ctl01"
+																					onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$innhold$ctl00$ctl02$ctl07$ctl06$ctl01\&#39;,\&#39;\&#39;)&#39;, 0)" /><label
+																					for="ctl00_innhold_ctl00_ctl02_ctl07_ctl06_ctl01">Nei</label>
+																			</div>
+																		</div>
+																	</div>
+																	<span
+																		id="ctl00_innhold_ctl00_ctl02_ctl07_25176852469e413d9a8cb4dacbea2c80_req"
+																		class="valknapp error"
+																		style="color: Red; display: none;">Består
+																		eksamen av flere deler? må velges</span>
+																</div>
+															</div>
+															<div class="rad multi">
+																<div class="col span4">
+																	<label
+																		for="ctl00_innhold_ctl00_ctl02_ctl07_9fc04b4e148d4d0d88ffab42bbde5ac2">Emnekode
+																		*</label>/<label
+																		for="ctl00_innhold_ctl00_ctl02_ctl07_b61367046f334dc8a71d0979aade022e">Emnenavn
+																		*</label>
+																</div>
+																<div class="col span8">
+																	<div class="skjemagruppe">
+																		<div class="rad">
+																			<div class="col span6 verdi">
+																				<input
+																					name="ctl00$innhold$ctl00$ctl02$ctl07$9fc04b4e148d4d0d88ffab42bbde5ac2"
+																					type="text"
+																					id="ctl00_innhold_ctl00_ctl02_ctl07_9fc04b4e148d4d0d88ffab42bbde5ac2" /><span
+																					id="ctl00_innhold_ctl00_ctl02_ctl07_ctl18"
+																					class="error" style="color: Red; display: none;">Emnekode
+																					må fylles ut</span>
+																			</div>
+																			<div class="col span6 verdi">
+																				<input
+																					name="ctl00$innhold$ctl00$ctl02$ctl07$b61367046f334dc8a71d0979aade022e"
+																					type="text"
+																					id="ctl00_innhold_ctl00_ctl02_ctl07_b61367046f334dc8a71d0979aade022e" /><span
+																					id="ctl00_innhold_ctl00_ctl02_ctl07_ctl20"
+																					class="error" style="color: Red; display: none;">Emnenavn
+																					må fylles ut</span>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="rad">
+																<div class="col span4">
+																	<label
+																		for="ctl00_innhold_ctl00_ctl02_ctl07_6e86526ec923441daeb15155c088c53f">Faglærer
+																		*</label>
+																</div>
+																<div class="col span8 verdi">
+																	<input
+																		name="ctl00$innhold$ctl00$ctl02$ctl07$6e86526ec923441daeb15155c088c53f"
+																		type="text"
+																		id="ctl00_innhold_ctl00_ctl02_ctl07_6e86526ec923441daeb15155c088c53f" /><span
+																		id="ctl00_innhold_ctl00_ctl02_ctl07_ctl27"
+																		class="error" style="color: Red; display: none;">Faglærer
+																		må fylles ut</span>
+																</div>
+															</div>
+															<div class="rad w50">
+																<div class="col span4">
+																	<label
+																		for="ctl00_innhold_ctl00_ctl02_ctl07_75c5ab47c6034d439e6c240d9a0c8d98">Karakter
+																		*</label>
+																</div>
+																<div class="col span8 verdi">
+																	<input
+																		name="ctl00$innhold$ctl00$ctl02$ctl07$75c5ab47c6034d439e6c240d9a0c8d98"
+																		type="text"
+																		id="ctl00_innhold_ctl00_ctl02_ctl07_75c5ab47c6034d439e6c240d9a0c8d98"
+																		class=" w50" /><span
+																		id="ctl00_innhold_ctl00_ctl02_ctl07_ctl32"
+																		class="error" style="color: Red; display: none;">Karakter
+																		må fylles ut</span>
+																</div>
+															</div>
+															<div class="rad w50">
+																<div class="col span4">
+																	<label
+																		for="ctl00_innhold_ctl00_ctl02_ctl07_cc67b9504f0f48598b577eb4b27a5d03">Kandidatnummer
+																		*</label>
+																</div>
+																<div class="col span8 verdi">
+																	<input
+																		name="ctl00$innhold$ctl00$ctl02$ctl07$cc67b9504f0f48598b577eb4b27a5d03"
+																		type="text"
+																		id="ctl00_innhold_ctl00_ctl02_ctl07_cc67b9504f0f48598b577eb4b27a5d03"
+																		class=" w50 hoyrestilt" /><span
+																		id="ctl00_innhold_ctl00_ctl02_ctl07_ctl37"
+																		class="error" style="color: Red; display: none;">Kandidatnummer
+																		må fylles ut</span><span
+																		id="ctl00_innhold_ctl00_ctl02_ctl07_ctl38"
+																		class="error" style="color: Red; display: none;">Kandidatnummer
+																		må være et heltall uten desimaler.</span>
+																</div>
+															</div>
+															<div class="rad w50">
+																<div class="col span4">
+																	<label
+																		for="ctl00_innhold_ctl00_ctl02_ctl07_b4a9a8cbcdb0417c8997cce78c768e56">Klasse
+																		*</label>
+																</div>
+																<div class="col span8 verdi">
+																	<input
+																		name="ctl00$innhold$ctl00$ctl02$ctl07$b4a9a8cbcdb0417c8997cce78c768e56"
+																		type="text"
+																		id="ctl00_innhold_ctl00_ctl02_ctl07_b4a9a8cbcdb0417c8997cce78c768e56"
+																		class=" w50" /><span
+																		id="ctl00_innhold_ctl00_ctl02_ctl07_ctl43"
+																		class="error" style="color: Red; display: none;">Klasse
+																		må fylles ut</span>
+																</div>
+															</div>
+														</div>
+													</fieldset>
+												</div>
+											</div>
+											<div class="col span2">
+												<div class="rad">
+													<div class="col span12">
+														<div id="hjelp">
+															<a href="#" tabindex="1">Hjelp</a>
+															<div>
+																<OL>
+																	<LI>Klikk på Hjelpesymbol der du trenger hjelp til
+																		utfyllingen.<BR>
+																	</LI>
+																	<LI>Skjemaet lagrer svarene underveis i
+																		utfyllingen. Hvis du velger å avbryte ved f.eks. å
+																		lukke nettleservinduet eller trykke på Avbryt-knappen
+																		og deretter bekrefter at du vil avbryte utfyllingen,
+																		vil all informasjon bli borte.<BR>
+																	</LI>
+																	<LI>Ingenting sendes inn før du selv ber om det,
+																		ved å velge Send inn-knappen. Den kommer fram etter at
+																		opplysningene er kontrollert og godkjent på
+																		oppsummeringssiden.</LI>
+																</OL>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="rad">
+													<div class="col span12">
+														<div class="awInformasjon">
+															<div id="ctl00_innhold_ctl00_ctl02_ctl16"
+																class="awInformasjonTekst">
+																<div style="position: absolute;">
+																	<div class="infopil"></div>
+																</div>
+																<h3>Bruk og utfylling</h3>
+																<div>
+																	Fyll ut feltene. </br>
+																	</br>
+																	<br />Felter markert med * er obligatorisk for
+																	utfylling.</br>
+																	</br>
+																	<br />Du kan være innaktiv i ca. 20 minutter
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="rad">
+											<div class="col span3"></div>
+											<div class="col span7">
+												<div id="ctl00_innhold_ctl00_ctl02_bn"
+													class="awBunnNavigasjon">
+													<input type="submit"
+														name="ctl00$innhold$ctl00$ctl02$bn$btnForrige"
+														value="Forrige"
+														id="ctl00_innhold_ctl00_ctl02_bn_btnForrige"
+														disabled="disabled" class="forrige" /><input
+														type="submit"
+														name="ctl00$innhold$ctl00$ctl02$bn$btnAvbryt"
+														value="Avbryt"
+														onclick="return confirm(&#39;Vil du avslutte skjemautfyllingen?&#39;);"
+														id="ctl00_innhold_ctl00_ctl02_bn_btnAvbryt" class="avbryt" /><input
+														type="submit" name="ctl00$innhold$ctl00$ctl02$bn$btnNeste"
+														value="Neste"
+														onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$innhold$ctl00$ctl02$bn$btnNeste&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, false))"
+														id="ctl00_innhold_ctl00_ctl02_bn_btnNeste" class="neste" />
+												</div>
+											</div>
+										</div>
+										<div style="clear: both;"></div>
+									</div>
+									<input type="hidden" name="hasChanged" id="hasChanged" value="" />
+									<input type="hidden" id="upPostBack"
+										onclick="_doPostBack('ctl00_innhold_ctl00_upWrapper', '') " />
+									<input type="submit" name="ctl00$innhold$ctl00$btnAuto"
+										value="" id="ctl00_innhold_ctl00_btnAuto" class="autopost" />
+
+									<div
+										style="position: absolute; top: 10px; left: 60px; font-size: 12px;">
+
+									</div>
+
+								</div>
+								<div id="progress">
+									<div>
+										<span id="ctl00_innhold_lblProgress">Vennligst vent...</span>
+										<br /> <br /> <img id="ctl00_innhold_imgProgress"
+											src="/sd/img/ajax-loader.gif" alt="Loader"
+											style="border-width: 0px;" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="bunn" style="position: relative;">
+							<div class="rad">
+								<div class="col span12"></div>
+							</div>
+							<div class="rad">
+								<div class="col span12">
+									<a id="ctl00_innhold_hlPersonvern" class="personvernLink"
+										href="/sd/personvern/Personvern.aspx" target="_blank">Personvernerklæring</a>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+//<![CDATA[
+var Page_Validators =  new Array(document.getElementById("ctl00_innhold_ctl00_ctl02_ctl05_ctl05"), document.getElementById("ctl00_innhold_ctl00_ctl02_ctl05_ctl12"), document.getElementById("ctl00_innhold_ctl00_ctl02_ctl05_ctl14"), document.getElementById("ctl00_innhold_ctl00_ctl02_ctl05_ctl21"), document.getElementById("ctl00_innhold_ctl00_ctl02_ctl05_ctl22"), document.getElementById("ctl00_innhold_ctl00_ctl02_ctl05_ctl27"), document.getElementById("ctl00_innhold_ctl00_ctl02_ctl05_ctl28"), document.getElementById("ctl00_innhold_ctl00_ctl02_ctl07_25176852469e413d9a8cb4dacbea2c80_req"), document.getElementById("ctl00_innhold_ctl00_ctl02_ctl07_ctl18"), document.getElementById("ctl00_innhold_ctl00_ctl02_ctl07_ctl20"), document.getElementById("ctl00_innhold_ctl00_ctl02_ctl07_ctl27"), document.getElementById("ctl00_innhold_ctl00_ctl02_ctl07_ctl32"), document.getElementById("ctl00_innhold_ctl00_ctl02_ctl07_ctl37"), document.getElementById("ctl00_innhold_ctl00_ctl02_ctl07_ctl38"), document.getElementById("ctl00_innhold_ctl00_ctl02_ctl07_ctl43"));
+//]]>
+</script>
+
+		<script type="text/javascript">
+//<![CDATA[
+var ctl00_innhold_ctl00_ctl02_ctl05_ctl05 = document.all ? document.all["ctl00_innhold_ctl00_ctl02_ctl05_ctl05"] : document.getElementById("ctl00_innhold_ctl00_ctl02_ctl05_ctl05");
+ctl00_innhold_ctl00_ctl02_ctl05_ctl05.controltovalidate = "ctl00_innhold_ctl00_ctl02_ctl05_9e9ec47c755244fabd18cf34b9c99011";
+ctl00_innhold_ctl00_ctl02_ctl05_ctl05.errormessage = "Studentnummer  må fylles ut";
+ctl00_innhold_ctl00_ctl02_ctl05_ctl05.display = "Dynamic";
+ctl00_innhold_ctl00_ctl02_ctl05_ctl05.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_innhold_ctl00_ctl02_ctl05_ctl05.initialvalue = "";
+var ctl00_innhold_ctl00_ctl02_ctl05_ctl12 = document.all ? document.all["ctl00_innhold_ctl00_ctl02_ctl05_ctl12"] : document.getElementById("ctl00_innhold_ctl00_ctl02_ctl05_ctl12");
+ctl00_innhold_ctl00_ctl02_ctl05_ctl12.controltovalidate = "ctl00_innhold_ctl00_ctl02_ctl05_2442c9b3614649ef948ee64225fd382f";
+ctl00_innhold_ctl00_ctl02_ctl05_ctl12.errormessage = "Fornavn  må fylles ut";
+ctl00_innhold_ctl00_ctl02_ctl05_ctl12.display = "Dynamic";
+ctl00_innhold_ctl00_ctl02_ctl05_ctl12.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_innhold_ctl00_ctl02_ctl05_ctl12.initialvalue = "";
+var ctl00_innhold_ctl00_ctl02_ctl05_ctl14 = document.all ? document.all["ctl00_innhold_ctl00_ctl02_ctl05_ctl14"] : document.getElementById("ctl00_innhold_ctl00_ctl02_ctl05_ctl14");
+ctl00_innhold_ctl00_ctl02_ctl05_ctl14.controltovalidate = "ctl00_innhold_ctl00_ctl02_ctl05_d3d2022d8037459f8926363f7d1c931f";
+ctl00_innhold_ctl00_ctl02_ctl05_ctl14.errormessage = "Etternavn  må fylles ut";
+ctl00_innhold_ctl00_ctl02_ctl05_ctl14.display = "Dynamic";
+ctl00_innhold_ctl00_ctl02_ctl05_ctl14.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_innhold_ctl00_ctl02_ctl05_ctl14.initialvalue = "";
+var ctl00_innhold_ctl00_ctl02_ctl05_ctl21 = document.all ? document.all["ctl00_innhold_ctl00_ctl02_ctl05_ctl21"] : document.getElementById("ctl00_innhold_ctl00_ctl02_ctl05_ctl21");
+ctl00_innhold_ctl00_ctl02_ctl05_ctl21.controltovalidate = "ctl00_innhold_ctl00_ctl02_ctl05_77b8e31d26e143a1948df8620c9cd398";
+ctl00_innhold_ctl00_ctl02_ctl05_ctl21.errormessage = "E-post  må fylles ut";
+ctl00_innhold_ctl00_ctl02_ctl05_ctl21.display = "Dynamic";
+ctl00_innhold_ctl00_ctl02_ctl05_ctl21.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_innhold_ctl00_ctl02_ctl05_ctl21.initialvalue = "";
+var ctl00_innhold_ctl00_ctl02_ctl05_ctl22 = document.all ? document.all["ctl00_innhold_ctl00_ctl02_ctl05_ctl22"] : document.getElementById("ctl00_innhold_ctl00_ctl02_ctl05_ctl22");
+ctl00_innhold_ctl00_ctl02_ctl05_ctl22.controltovalidate = "ctl00_innhold_ctl00_ctl02_ctl05_77b8e31d26e143a1948df8620c9cd398";
+ctl00_innhold_ctl00_ctl02_ctl05_ctl22.errormessage = "E-post  må være en epostadresse.";
+ctl00_innhold_ctl00_ctl02_ctl05_ctl22.display = "Dynamic";
+ctl00_innhold_ctl00_ctl02_ctl05_ctl22.evaluationfunction = "RegularExpressionValidatorEvaluateIsValid";
+ctl00_innhold_ctl00_ctl02_ctl05_ctl22.validationexpression = "^([a-zA-Z0-9][\\w\\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\\w\\.-]*[a-zA-Z0-9]\\.[a-zA-Z][a-zA-Z\\.]*[a-zA-Z]){1,70}$";
+var ctl00_innhold_ctl00_ctl02_ctl05_ctl27 = document.all ? document.all["ctl00_innhold_ctl00_ctl02_ctl05_ctl27"] : document.getElementById("ctl00_innhold_ctl00_ctl02_ctl05_ctl27");
+ctl00_innhold_ctl00_ctl02_ctl05_ctl27.controltovalidate = "ctl00_innhold_ctl00_ctl02_ctl05_8b148def167e4271a406894d5aa9e1e0";
+ctl00_innhold_ctl00_ctl02_ctl05_ctl27.errormessage = "Telefonnummer  må fylles ut";
+ctl00_innhold_ctl00_ctl02_ctl05_ctl27.display = "Dynamic";
+ctl00_innhold_ctl00_ctl02_ctl05_ctl27.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_innhold_ctl00_ctl02_ctl05_ctl27.initialvalue = "";
+var ctl00_innhold_ctl00_ctl02_ctl05_ctl28 = document.all ? document.all["ctl00_innhold_ctl00_ctl02_ctl05_ctl28"] : document.getElementById("ctl00_innhold_ctl00_ctl02_ctl05_ctl28");
+ctl00_innhold_ctl00_ctl02_ctl05_ctl28.controltovalidate = "ctl00_innhold_ctl00_ctl02_ctl05_8b148def167e4271a406894d5aa9e1e0";
+ctl00_innhold_ctl00_ctl02_ctl05_ctl28.errormessage = "Telefonnummer  må være et telefonnummer med 8 siffer";
+ctl00_innhold_ctl00_ctl02_ctl05_ctl28.display = "Dynamic";
+ctl00_innhold_ctl00_ctl02_ctl05_ctl28.type = "Integer";
+ctl00_innhold_ctl00_ctl02_ctl05_ctl28.evaluationfunction = "RangeValidatorEvaluateIsValid";
+ctl00_innhold_ctl00_ctl02_ctl05_ctl28.maximumvalue = "99999999";
+ctl00_innhold_ctl00_ctl02_ctl05_ctl28.minimumvalue = "10000000";
+var ctl00_innhold_ctl00_ctl02_ctl07_25176852469e413d9a8cb4dacbea2c80_req = document.all ? document.all["ctl00_innhold_ctl00_ctl02_ctl07_25176852469e413d9a8cb4dacbea2c80_req"] : document.getElementById("ctl00_innhold_ctl00_ctl02_ctl07_25176852469e413d9a8cb4dacbea2c80_req");
+ctl00_innhold_ctl00_ctl02_ctl07_25176852469e413d9a8cb4dacbea2c80_req.errormessage = "Består eksamen av flere deler?  må velges";
+ctl00_innhold_ctl00_ctl02_ctl07_25176852469e413d9a8cb4dacbea2c80_req.display = "Dynamic";
+ctl00_innhold_ctl00_ctl02_ctl07_25176852469e413d9a8cb4dacbea2c80_req.evaluationfunction = "CustomValidatorEvaluateIsValid";
+ctl00_innhold_ctl00_ctl02_ctl07_25176852469e413d9a8cb4dacbea2c80_req.clientvalidationfunction = "acos.validator.sjekkboks";
+var ctl00_innhold_ctl00_ctl02_ctl07_ctl18 = document.all ? document.all["ctl00_innhold_ctl00_ctl02_ctl07_ctl18"] : document.getElementById("ctl00_innhold_ctl00_ctl02_ctl07_ctl18");
+ctl00_innhold_ctl00_ctl02_ctl07_ctl18.controltovalidate = "ctl00_innhold_ctl00_ctl02_ctl07_9fc04b4e148d4d0d88ffab42bbde5ac2";
+ctl00_innhold_ctl00_ctl02_ctl07_ctl18.errormessage = "Emnekode  må fylles ut";
+ctl00_innhold_ctl00_ctl02_ctl07_ctl18.display = "Dynamic";
+ctl00_innhold_ctl00_ctl02_ctl07_ctl18.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_innhold_ctl00_ctl02_ctl07_ctl18.initialvalue = "";
+var ctl00_innhold_ctl00_ctl02_ctl07_ctl20 = document.all ? document.all["ctl00_innhold_ctl00_ctl02_ctl07_ctl20"] : document.getElementById("ctl00_innhold_ctl00_ctl02_ctl07_ctl20");
+ctl00_innhold_ctl00_ctl02_ctl07_ctl20.controltovalidate = "ctl00_innhold_ctl00_ctl02_ctl07_b61367046f334dc8a71d0979aade022e";
+ctl00_innhold_ctl00_ctl02_ctl07_ctl20.errormessage = "Emnenavn  må fylles ut";
+ctl00_innhold_ctl00_ctl02_ctl07_ctl20.display = "Dynamic";
+ctl00_innhold_ctl00_ctl02_ctl07_ctl20.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_innhold_ctl00_ctl02_ctl07_ctl20.initialvalue = "";
+var ctl00_innhold_ctl00_ctl02_ctl07_ctl27 = document.all ? document.all["ctl00_innhold_ctl00_ctl02_ctl07_ctl27"] : document.getElementById("ctl00_innhold_ctl00_ctl02_ctl07_ctl27");
+ctl00_innhold_ctl00_ctl02_ctl07_ctl27.controltovalidate = "ctl00_innhold_ctl00_ctl02_ctl07_6e86526ec923441daeb15155c088c53f";
+ctl00_innhold_ctl00_ctl02_ctl07_ctl27.errormessage = "Faglærer  må fylles ut";
+ctl00_innhold_ctl00_ctl02_ctl07_ctl27.display = "Dynamic";
+ctl00_innhold_ctl00_ctl02_ctl07_ctl27.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_innhold_ctl00_ctl02_ctl07_ctl27.initialvalue = "";
+var ctl00_innhold_ctl00_ctl02_ctl07_ctl32 = document.all ? document.all["ctl00_innhold_ctl00_ctl02_ctl07_ctl32"] : document.getElementById("ctl00_innhold_ctl00_ctl02_ctl07_ctl32");
+ctl00_innhold_ctl00_ctl02_ctl07_ctl32.controltovalidate = "ctl00_innhold_ctl00_ctl02_ctl07_75c5ab47c6034d439e6c240d9a0c8d98";
+ctl00_innhold_ctl00_ctl02_ctl07_ctl32.errormessage = "Karakter  må fylles ut";
+ctl00_innhold_ctl00_ctl02_ctl07_ctl32.display = "Dynamic";
+ctl00_innhold_ctl00_ctl02_ctl07_ctl32.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_innhold_ctl00_ctl02_ctl07_ctl32.initialvalue = "";
+var ctl00_innhold_ctl00_ctl02_ctl07_ctl37 = document.all ? document.all["ctl00_innhold_ctl00_ctl02_ctl07_ctl37"] : document.getElementById("ctl00_innhold_ctl00_ctl02_ctl07_ctl37");
+ctl00_innhold_ctl00_ctl02_ctl07_ctl37.controltovalidate = "ctl00_innhold_ctl00_ctl02_ctl07_cc67b9504f0f48598b577eb4b27a5d03";
+ctl00_innhold_ctl00_ctl02_ctl07_ctl37.errormessage = "Kandidatnummer  må fylles ut";
+ctl00_innhold_ctl00_ctl02_ctl07_ctl37.display = "Dynamic";
+ctl00_innhold_ctl00_ctl02_ctl07_ctl37.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_innhold_ctl00_ctl02_ctl07_ctl37.initialvalue = "";
+var ctl00_innhold_ctl00_ctl02_ctl07_ctl38 = document.all ? document.all["ctl00_innhold_ctl00_ctl02_ctl07_ctl38"] : document.getElementById("ctl00_innhold_ctl00_ctl02_ctl07_ctl38");
+ctl00_innhold_ctl00_ctl02_ctl07_ctl38.controltovalidate = "ctl00_innhold_ctl00_ctl02_ctl07_cc67b9504f0f48598b577eb4b27a5d03";
+ctl00_innhold_ctl00_ctl02_ctl07_ctl38.errormessage = "Kandidatnummer  må være et heltall uten desimaler.";
+ctl00_innhold_ctl00_ctl02_ctl07_ctl38.display = "Dynamic";
+ctl00_innhold_ctl00_ctl02_ctl07_ctl38.evaluationfunction = "RegularExpressionValidatorEvaluateIsValid";
+ctl00_innhold_ctl00_ctl02_ctl07_ctl38.validationexpression = "^[-]?[\\d]*$";
+var ctl00_innhold_ctl00_ctl02_ctl07_ctl43 = document.all ? document.all["ctl00_innhold_ctl00_ctl02_ctl07_ctl43"] : document.getElementById("ctl00_innhold_ctl00_ctl02_ctl07_ctl43");
+ctl00_innhold_ctl00_ctl02_ctl07_ctl43.controltovalidate = "ctl00_innhold_ctl00_ctl02_ctl07_b4a9a8cbcdb0417c8997cce78c768e56";
+ctl00_innhold_ctl00_ctl02_ctl07_ctl43.errormessage = "Klasse  må fylles ut";
+ctl00_innhold_ctl00_ctl02_ctl07_ctl43.display = "Dynamic";
+ctl00_innhold_ctl00_ctl02_ctl07_ctl43.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_innhold_ctl00_ctl02_ctl07_ctl43.initialvalue = "";
+//]]>
+</script>
+
+
+		<script type="text/javascript">
+//<![CDATA[
+(function() {var fn = function() {$get("ctl00_ToolkitScriptManager1_HiddenField").value = '';Sys.Application.remove_init(fn);};Sys.Application.add_init(fn);})();
+var Page_ValidationActive = false;
+if (typeof(ValidatorOnLoad) == "function") {
+    ValidatorOnLoad();
+}
+
+function ValidatorOnSubmit() {
+    if (Page_ValidationActive) {
+        return ValidatorCommonOnSubmit();
+    }
+    else {
+        return true;
+    }
+}
+        var aw_ = new Aw('ctl00_innhold_ctl00_ctl02','ctl00_innhold_ctl00_ctl02_ctl16');
+
+document.getElementById('ctl00_innhold_ctl00_ctl02_ctl05_ctl05').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('ctl00_innhold_ctl00_ctl02_ctl05_ctl05'));
+}
+
+document.getElementById('ctl00_innhold_ctl00_ctl02_ctl05_ctl12').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('ctl00_innhold_ctl00_ctl02_ctl05_ctl12'));
+}
+
+document.getElementById('ctl00_innhold_ctl00_ctl02_ctl05_ctl14').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('ctl00_innhold_ctl00_ctl02_ctl05_ctl14'));
+}
+
+document.getElementById('ctl00_innhold_ctl00_ctl02_ctl05_ctl21').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('ctl00_innhold_ctl00_ctl02_ctl05_ctl21'));
+}
+
+document.getElementById('ctl00_innhold_ctl00_ctl02_ctl05_ctl22').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('ctl00_innhold_ctl00_ctl02_ctl05_ctl22'));
+}
+
+document.getElementById('ctl00_innhold_ctl00_ctl02_ctl05_ctl27').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('ctl00_innhold_ctl00_ctl02_ctl05_ctl27'));
+}
+
+document.getElementById('ctl00_innhold_ctl00_ctl02_ctl05_ctl28').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('ctl00_innhold_ctl00_ctl02_ctl05_ctl28'));
+}
+
+document.getElementById('ctl00_innhold_ctl00_ctl02_ctl07_25176852469e413d9a8cb4dacbea2c80_req').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('ctl00_innhold_ctl00_ctl02_ctl07_25176852469e413d9a8cb4dacbea2c80_req'));
+}
+
+document.getElementById('ctl00_innhold_ctl00_ctl02_ctl07_ctl18').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('ctl00_innhold_ctl00_ctl02_ctl07_ctl18'));
+}
+
+document.getElementById('ctl00_innhold_ctl00_ctl02_ctl07_ctl20').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('ctl00_innhold_ctl00_ctl02_ctl07_ctl20'));
+}
+
+document.getElementById('ctl00_innhold_ctl00_ctl02_ctl07_ctl27').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('ctl00_innhold_ctl00_ctl02_ctl07_ctl27'));
+}
+
+document.getElementById('ctl00_innhold_ctl00_ctl02_ctl07_ctl32').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('ctl00_innhold_ctl00_ctl02_ctl07_ctl32'));
+}
+
+document.getElementById('ctl00_innhold_ctl00_ctl02_ctl07_ctl37').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('ctl00_innhold_ctl00_ctl02_ctl07_ctl37'));
+}
+
+document.getElementById('ctl00_innhold_ctl00_ctl02_ctl07_ctl38').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('ctl00_innhold_ctl00_ctl02_ctl07_ctl38'));
+}
+
+document.getElementById('ctl00_innhold_ctl00_ctl02_ctl07_ctl43').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('ctl00_innhold_ctl00_ctl02_ctl07_ctl43'));
+}
+//]]>
+</script>
+	</form>
+
+
+	<div id="cookieinfo" class="cookieframe">
+		<div class="cookietext">
+			Denne siden bruker informasjonskapsler. Informasjonskapsler lagrer
+			opplysninger i din nettleser til statistikkformål og for å forbedre
+			funksjonaliteten til nettsiden. For detaljerte opplysninger om vår
+			bruk av informasjonskapsler, klikk Info. <span
+				class="cookiehideformobile"> </span>
+		</div>
+		<div class="clearfixresp"></div>
+		<div class="cookieclose">
+			<a href="/" class="lukk">Lukk</a> <br /> <a href="/" class="info">Info</a>
+		</div>
+	</div>
+
+	<div id="cookieliste" class="cookieframe">
+		<div class="cheader">
+			Under finner du en oversikt over informasjonskapslene som benyttes på
+			siden. Ved å benytte denne nettsiden samtykker du til at
+			informasjonskapslene lagres i din nettleser. Om du ikke samtykker må
+			du stille inn din nettleser til å ikke akseptere lagring av
+			informasjonskapsler. Dette kan gå ut over funksjonaliteten på
+			nettsiden. <br /> Bruk av informasjonskapsler reguleres av <a
+				href="http://lovdata.no/dokument/NL/lov/2003-07-04-83/KAPITTEL_2#§2-7b">ekomlovens
+				§2-7b</a>.
+		</div>
+		<div class="crows">
+			<div>
+				<span>ASP.NET_SessionId</span> <span>:</span> <span>Brukes av
+					ASP.NET for å identifisere hver enkelt bruker.</span>
+			</div>
+			<div>
+				<span>GodkjentCookies</span> <span>:</span> <span>Brukes for
+					å vite om brukeren har akseptert bruk av informasjonskapsler.</span>
+			</div>
+			<div>
+				<span>_ga</span> <span>:</span> <span>Brukes av Google
+					Analytics for å skille hver enkelt bruker.</span>
+			</div>
+		</div>
+	</div>
+
+	<!--149942-->
+
+
+</body>
+</html>

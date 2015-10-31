@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/no.hib.masters.model/src" modelPluginID="no.hib.masters.model"
+    modelName="HtmlDoc" generateSchema="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>htmlDoc.ecore</foreignModel>
+  <genPackages prefix="HtmlDoc" basePackage="no.hib.masters.model.htmldoc" disposableProviderFactory="true"
+      dataTypeConverters="true" contentTypeIdentifier="" ecorePackage="htmlDoc.ecore#/"
+      publicationLocation="">
+    <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter.xmi">
+      <genAnnotations source="htmlDocXMI.xsd"/>
+    </genAnnotations>
+    <genClasses ecoreClass="htmlDoc.ecore#//DifiForm">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute htmlDoc.ecore#//DifiForm/SkjemaID"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference htmlDoc.ecore#//DifiForm/steps"/>
+    </genClasses>
+    <genClasses ecoreClass="htmlDoc.ecore#//FormStep">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute htmlDoc.ecore#//FormStep/stepTitle"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference htmlDoc.ecore#//FormStep/formElements"/>
+    </genClasses>
+    <genClasses ecoreClass="htmlDoc.ecore#//HtmlElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute htmlDoc.ecore#//HtmlElement/ID"/>
+    </genClasses>
+    <genClasses ecoreClass="htmlDoc.ecore#//HtmlLabel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute htmlDoc.ecore#//HtmlLabel/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference htmlDoc.ecore#//HtmlLabel/for"/>
+    </genClasses>
+    <genClasses ecoreClass="htmlDoc.ecore#//HtmlInput">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute htmlDoc.ecore#//HtmlInput/type"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

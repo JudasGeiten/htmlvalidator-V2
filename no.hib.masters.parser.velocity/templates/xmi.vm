@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<htmlDoc:DifiForm xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:htmlDoc="http://www.example.org/htmlDoc" SkjemaID="$formId">
+
+#foreach($key in $formSteps.keySet())
+    <steps stepTitle="$key.getAttributes().getNamedItem("id").getNodeValue()">
+    #foreach($item in $formSteps.get($key))
+	    #if($item.getNodeName() == "input")
+	    	 <formElements xsi:type="htmlDoc:HtmlInput" ID="$item.getAttributes().getNamedItem("id").getNodeValue()" />
+	    #end
+	    #if($item.getNodeName() == "label")
+	        <formElements xsi:type="htmlDoc:HtmlLabel" ID="$item.getAttributes().getNamedItem("id").getNodeValue()" 
+	        	for="$item.getAttributes().getNamedItem("for").getNodeValue()" />
+	    #end
+    #end
+    </steps>
+#end
+ 
+ </htmlDoc:DifiForm>
