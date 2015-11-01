@@ -60,7 +60,6 @@ public class HtmlParser implements IParser {
 
 		if (doc != null) {
 			VelocityContext context = AddElementsToContext(doc);
-			context.put("service", service);
 			Template template = ve.getTemplate("xmi.vm");
 			
 			StringWriter sw = new StringWriter();
@@ -75,7 +74,7 @@ public class HtmlParser implements IParser {
 	public void WriteXmiToFile(String xmi) {
 		PrintWriter writer;
 		try {
-			writer = new PrintWriter("generated-files/generated.xmi", "UTF-8");
+			writer = new PrintWriter("generated-files/generatedHTML.xmi", "UTF-8");
 			writer.println(xmi);
 			writer.close();
 		} catch (Exception e) {
@@ -89,7 +88,7 @@ public class HtmlParser implements IParser {
 		VelocityContext context = new VelocityContext();
 
 		NodeList formSteps = service.getNodeOfType("form");
-		// Vector<Node> forms = new Vector<Node>();
+
 		HashMap<Node, Collection<Element>> steps = new HashMap<Node, Collection<Element>>();
 
 		for (int i = 0; i < formSteps.getLength(); i++) {

@@ -2,8 +2,9 @@ package no.hib.masters.parser.velocity;
 
 import static org.junit.Assert.*;
 
-import javax.xml.validation.Schema;
+import java.util.ArrayList;
 
+import org.eclipse.emf.common.util.Diagnostic;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,9 +20,27 @@ public class ValidatorServiceTest {
 	}
 
 	@Test
-	public void ValidateModelTest() {
-		String path = "generated-files/generated.xmi";
-		assertTrue(service.ValidateModel(path));
+	public void ValidateValidModelTest() {
+		ArrayList<Diagnostic> res = service.ValidateModel("generated-files/valid.xmi");
+		for(Diagnostic diag : res)
+		{
+			assertTrue(diag.getChildren().size() == 0);
+		}
+	}
+	
+	@Test
+	public void ValidateInvalidModelTest(){
+		ArrayList<Diagnostic> res = service.ValidateModel("generated-files/invalid.xmi");
+		boolean modelContainsError = false;
+		for(Diagnostic diag : res)
+		{
+			if(diag.getChildren().size() > 0)
+			{
+				modelContainsError = true;
+			}
+		}
+		
+		assertTrue(modelContainsError);
 	}
 
 }

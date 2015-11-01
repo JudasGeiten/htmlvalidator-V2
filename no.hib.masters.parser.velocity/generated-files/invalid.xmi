@@ -16,6 +16,10 @@ $UtilService.String GenerateRandomElementID()
 	    	 labelledBy="lblSurname" />
 	            </steps>
     <steps stepTitle="invalidForm">
-        </steps>
+        		    	    	 <formElements xsi:type="htmlDoc:HtmlInput" ID="inputFirstname2"
+	    	 labelledBy="" />
+	            		    	    	 <formElements xsi:type="htmlDoc:HtmlInput" ID="inputSurname2"
+	    	 labelledBy="" />
+	            </steps>
  
  </htmlDoc:DifiForm>
