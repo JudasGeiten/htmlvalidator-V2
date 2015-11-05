@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/no.hib.masters.model/src" modelPluginID="no.hib.masters.model"
+    modelName="Model" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>model.ecore</foreignModel>
+  <genPackages prefix="Model" disposableProviderFactory="true" ecorePackage="model.ecore#/">
+    <genClasses ecoreClass="model.ecore#//HtmlRoot">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//HtmlRoot/steps"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//HtmlRoot/cssStyles"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//FormStep">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//FormStep/stepTitle"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//FormStep/formElements"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//FormStep/stepStyle"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//FormElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//FormElement/ID"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//FormElement/elementStyle"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//Label">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Label/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Label/for"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Label/constrastRatio"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//Input">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Input/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Input/labelledBy"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//CssStyle">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//CssStyle/selector"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//CssStyle/cssDeclarations"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//CssDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//CssDeclaration/property"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//CssDeclaration/value"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//Image">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Image/alt"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

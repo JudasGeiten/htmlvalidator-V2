@@ -5,20 +5,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Form example</title>
+<title>Form example</title>
 </head>
 
 <style id="test">
 .inputForm {
-	background-color:#red;
+	background-color: #008888;
 	padding: 3em;
-	width:500px;
-	margin:auto;
-	margin-bottom:5em;
+	width: 500px;
+	margin: auto;
+	margin-bottom: 5em;
 }
 
+fieldset{
+	border: 0;
+	width:500px;
+	}
+
 .inputLabel {
-	font-weight:bold;
+	font-weight: bold;
 	color: #0088dd;
 }
 
@@ -29,33 +34,41 @@
 }
 
 .inputButton {
-	padding:0.5em;
-	float:right;
-	clear:both;
-	margin-top:3em;
+	padding: 0.5em;
+	float: right;
+	clear: both;
+	margin-top: 3em;
 }
-
 </style>
 
 <body>
-	<fieldset class="inputForm">
-		<legend><strong>Form</strong></legend>
-		<form id="validForm">
-			<label class="inputLabel" for="inputFirstname"  id="lblFirstname">Firstname</label>
-			<input class="inputField" type="text" id="inputFirstname" />
-			<label class="inputLabel"  for="inputSurname" id="lblSurname">Surname</label>
+	<img src="https://www.aventia.no/wp-content/uploads/2012/02/acos-logo-150x150.png" />
+	<img src="https://www.aventia.no/wp-content/uploads/2012/02/acos-logo-150x150.png" alt="logo"/>
+	<fieldset >
+		<legend>
+			<strong>Form</strong>
+		</legend>
+		<form id="validForm" class="inputForm">
+			<label class="inputLabel" for="inputFirstname" id="lblFirstname">Firstname</label>
+			<input class="inputField" type="text" id="inputFirstname" /> <label
+				class="inputLabel" for="inputSurname" id="lblSurname">Surname</label>
 			<input class="inputField" type="text" id="inputSurname" />
 			<button class="inputButton" type="submit">Submit</button>
-		</form>		
+
+		</form>
 	</fieldset>
-	
-	<fieldset class="inputForm">
-		<legend><strong>Form</strong></legend>
-		<form id="invalidForm">
-		 <input class="inputField" type="text" id="inputFirstname2" placeholder="Firstname"/>
-			<input class="inputField" type="text" id="inputSurname2" placeholder="Surname"/>
+
+	<fieldset>
+		<legend>
+			<strong>Form</strong>
+		</legend>
+		<form id="invalidForm" class="inputForm">
+			<input class="inputField" type="text" id="inputFirstname2"
+				placeholder="Firstname" /> <input class="inputField" type="text"
+				id="inputSurname2" placeholder="Surname" />
 			<button class="inputButton" type="submit">Submit</button>
-		</form>		
+
+		</form>
 	</fieldset>
 </body>
 </html>

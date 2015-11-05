@@ -14,9 +14,12 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import no.hib.masters.parser.domain.IParser;
 import no.hib.masters.parser.services.ParserService;
+import no.hib.masters.parser.services.StyleService;
 import no.hib.masters.parser.services.UtilService;
 
 import org.apache.velocity.Template;
@@ -31,8 +34,9 @@ import org.w3c.dom.NodeList;
 public class HtmlParser implements IParser {
 
 	private VelocityEngine ve;
-	private ParserService service;
-	
+	private ParserService parserService;
+	private StyleService styleService;
+
 	public HtmlParser() {
 		ve = new VelocityEngine();
 		ve.setProperty(RuntimeConstants.RESOURCE_LOADER, "file");
@@ -61,7 +65,7 @@ public class HtmlParser implements IParser {
 		if (doc != null) {
 			VelocityContext context = AddElementsToContext(doc);
 			Template template = ve.getTemplate("xmi.vm");
-			
+
 			StringWriter sw = new StringWriter();
 			template.merge(context, sw);
 
@@ -84,11 +88,20 @@ public class HtmlParser implements IParser {
 	}
 
 	private VelocityContext AddElementsToContext(Document doc) {
-		service = new ParserService(doc);
+		parserService = new ParserService(doc);
 		VelocityContext context = new VelocityContext();
 
-		NodeList formSteps = service.getNodeOfType("form");
+		NodeList formSteps = parserService.getNodeOfType("form");
+		NodeList formStyles = parserService.getNodeOfType("style");
+		HashMap<String, HashMap<String, String>> styles = getFormStyles(formStyles);
+		styleService = new StyleService(styles);
+		
+		context.put("formSteps", getFormSteps(formSteps));
+		context.put("formStyles", styles);
+		return context;
+	}
 
+	private HashMap<Node, Collection<Element>> getFormSteps(NodeList formSteps) {
 		HashMap<Node, Collection<Element>> steps = new HashMap<Node, Collection<Element>>();
 
 		for (int i = 0; i < formSteps.getLength(); i++) {
@@ -98,31 +111,38 @@ public class HtmlParser implements IParser {
 
 			HashMap<String, String> relationshipMap = new HashMap<String, String>();
 
-			NodeList inputs = service.getChildNodesOfType(node, "input");
-			NodeList labels = service.getChildNodesOfType(node, "label");
+			NodeList inputs = parserService.getChildNodesOfType(node, "input");
+			NodeList labels = parserService.getChildNodesOfType(node, "label");
 
 			for (int j = 0; j < labels.getLength(); j++) {
 				Element labelNode = (Element) labels.item(j);
-				
-				if (labelNode.getAttributes().getNamedItem("for") == null)
-				{
+
+				if (labelNode.getAttributes().getNamedItem("for") == null) {
 					labelNode.setAttribute("for", "");
 				}
-				
-				if (labelNode.getAttributes().getNamedItem("id") == null)
-				{
+
+				if (labelNode.getAttributes().getNamedItem("id") == null) {
 					labelNode.setAttribute("id", "");
 				}
-				
+
 				if (labelNode.getAttributes().getNamedItem("for").getNodeValue() != "") {
-					
-					if(labelNode.getAttributes().getNamedItem("id").getNodeValue() == "")
-					{
+					if (labelNode.getAttributes().getNamedItem("id").getNodeValue() == "") {
 						labelNode.setAttribute("id", UtilService.GenerateRandomElementID());
 					}
-					
-					relationshipMap.put(labelNode.getAttributes().getNamedItem("for").getNodeValue(),
-							labelNode.getAttributes().getNamedItem("id").getNodeValue());
+
+					relationshipMap.put(labelNode.getAttributes().getNamedItem("for").getNodeValue().trim(),
+							labelNode.getAttributes().getNamedItem("id").getNodeValue().trim());
+
+				}
+				
+				if(labelNode.getAttributes().getNamedItem("class").getNodeValue() != "")
+				{
+					HashMap<String, String> parentStyle = styleService.getStyleNode(labelNode.getParentNode().getAttributes().getNamedItem("class").getNodeValue());
+					if(parentStyle != null && parentStyle.containsKey("background-color"))
+					{
+						HashMap<String, String> nodeStyle = styleService.getStyleNode(labelNode.getAttributes().getNamedItem("class").getNodeValue());
+						labelNode.setAttribute("ratio", styleService.CalculateConstrastRatio(parentStyle.get("background-color"), nodeStyle.get("color")) + "");
+					}
 
 				}
 
@@ -131,40 +151,68 @@ public class HtmlParser implements IParser {
 
 			for (int j = 0; j < inputs.getLength(); j++) {
 				Element inputNode = (Element) inputs.item(j);
-				
-				
-				if (inputNode.getAttributes().getNamedItem("id") == null)
-				{
+
+				if (inputNode.getAttributes().getNamedItem("id") == null) {
 					inputNode.setAttribute("id", "");
 				}
-				
-				if (inputNode.getAttributes().getNamedItem("id").getNodeValue() != "" 
-						&& relationshipMap.containsKey(inputNode.getAttributes().getNamedItem("id").getNodeValue())) {
-					
-					inputNode.setAttribute("labelledBy", 
-							relationshipMap.get(inputNode.getAttributes().getNamedItem("id").getNodeValue()));
-				}
-				else
-				{
+
+				if (inputNode.getAttributes().getNamedItem("id").getNodeValue() != "" && relationshipMap
+						.containsKey(inputNode.getAttributes().getNamedItem("id").getNodeValue().trim())) {
+
+					inputNode.setAttribute("labelledBy",
+							relationshipMap.get(inputNode.getAttributes().getNamedItem("id").getNodeValue().trim()));
+				} else {
 					inputNode.setAttribute("labelledBy", "");
 				}
-				
-				
-				if(inputNode.getAttributes().getNamedItem("id") == null)
-				{
+
+				if (inputNode.getAttributes().getNamedItem("id") == null) {
 					inputNode.setAttribute("id", "");
 				}
-				
-						
+
 				coll.add(inputNode);
 			}
 
 			steps.put(node, coll);
 		}
+		return steps;
+	}
 
-		context.put("formSteps", steps);
-		context.put("formId", "BK0395");
-		return context;
+	private HashMap<String, HashMap<String, String>> getFormStyles(NodeList formStyles) {
+		if (formStyles.getLength() == 0)
+			return null;
+
+		Element styleElement = (Element) parserService.getNodeOfType("style").item(0);
+
+		return GetCssRules(styleElement.getTextContent());
+	}
+
+	private HashMap<String, HashMap<String, String>> GetCssRules(String content) {
+		HashMap<String, HashMap<String, String>> res = new HashMap<String, HashMap<String, String>>();
+
+		Matcher matcher = Pattern.compile("([^\\}\\{]+)(\\{[^\\}]+\\})", Pattern.DOTALL | Pattern.MULTILINE)
+				.matcher(content);
+
+		while (matcher.find()) {
+			String selector = matcher.group(1).trim().replace(".", "");
+			String definition = matcher.group(2);
+
+			res.put(selector, GetCssDefinition(definition));
+		}
+
+		return res;
+	}
+
+	private HashMap<String, String> GetCssDefinition(String definition) {
+		HashMap<String, String> res = new HashMap<String, String>();
+		String[] defArray = definition.split(";", -1);
+		for (int i = 0; i < defArray.length; i++) {
+			String[] cssRule = defArray[i].split(":");
+			if (cssRule.length > 1) {
+				res.put(cssRule[0].replace("{", "").replace("}", "").trim(), cssRule[1].trim());
+			}
+
+		}
+		return res;
 	}
 
 }

@@ -6,11 +6,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
 		<attributes>
 			<attribute name="optional" value="true"/>
@@ -35,5 +30,9 @@
 	<classpathentry kind="lib" path="C:/Utvikling/Eclipse/plugins/org.eclipse.emf.ecore_2.11.1.v20150805-0538.jar"/>
 	<classpathentry kind="lib" path="C:/Utvikling/Eclipse/plugins/org.eclipse.emf.common_2.11.0.v20150805-0538.jar"/>
 	<classpathentry kind="lib" path="C:/Utvikling/Eclipse/plugins/org.eclipse.emf.ecore.xmi_2.11.1.v20150805-0538.jar"/>
+	<classpathentry kind="lib" path="C:/Utvikling/Eclipse/plugins/org.eclipse.ocl_3.5.0.v20150521-1211.jar"/>
+	<classpathentry kind="lib" path="C:/Utvikling/Eclipse/plugins/org.eclipse.ocl.ecore_3.5.0.v20150525-1635.jar"/>
+	<classpathentry kind="lib" path="C:/Utvikling/Eclipse/plugins/org.eclipse.ocl.common_1.3.0.v20150519-0914.jar"/>
+	<classpathentry kind="lib" path="C:/Utvikling/Eclipse/plugins/org.eclipse.ocl.source_3.5.0.v20150521-1211.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

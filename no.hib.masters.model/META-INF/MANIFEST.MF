@@ -7,9 +7,9 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: no.hib.masters.model.htmldoc.htmlDoc,
- no.hib.masters.model.htmldoc.htmlDoc.impl,
- no.hib.masters.model.htmldoc.htmlDoc.util
+Export-Package: model,
+ model.impl,
+ model.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport
 Bundle-ActivationPolicy: lazy

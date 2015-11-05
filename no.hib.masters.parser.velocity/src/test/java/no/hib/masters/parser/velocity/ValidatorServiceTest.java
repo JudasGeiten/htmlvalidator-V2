@@ -24,6 +24,10 @@ public class ValidatorServiceTest {
 		ArrayList<Diagnostic> res = service.ValidateModel("generated-files/valid.xmi");
 		for(Diagnostic diag : res)
 		{
+			for(Diagnostic child : diag.getChildren())
+			{
+				service.printDiagnostic(child, " ");
+			}
 			assertTrue(diag.getChildren().size() == 0);
 		}
 	}
@@ -41,6 +45,30 @@ public class ValidatorServiceTest {
 		}
 		
 		assertTrue(modelContainsError);
+	}
+	
+	@Test
+	public void ValidateGeneratedOutput(){
+		ArrayList<Diagnostic> res = service.ValidateModel("generated-files/generatedHTML.xmi");
+		for(Diagnostic diag : res)
+		{
+			for(Diagnostic child : diag.getChildren())
+			{
+				service.printDiagnostic(child, " ");
+			}
+			assertTrue(diag.getChildren().size() == 0);
+		}
+	}
+	
+	@Test
+	public void ValidateModelUsingOCLConstraint(){
+		try{
+			service.ValidateModelwithConstraints();
+		}catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+		}
+
 	}
 
 }

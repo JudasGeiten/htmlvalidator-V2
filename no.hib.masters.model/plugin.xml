@@ -7,11 +7,11 @@
 <plugin>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated htmlDoc -->
+      <!-- @generated model -->
       <package
             uri="http://www.example.org/htmlDoc"
-            class="no.hib.masters.model.htmldoc.htmlDoc.HtmlDocPackage"
-            genModel="model/htmlDoc.genmodel"/>
+            class="model.ModelPackage"
+            genModel="model/model.genmodel"/>
    </extension>
 
 </plugin>

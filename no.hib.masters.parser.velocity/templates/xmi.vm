@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<htmlDoc:DifiForm xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" 
+<htmlDoc:HtmlRoot xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:htmlDoc="http://www.example.org/htmlDoc" SkjemaID="$formId">
-
-$UtilService.String GenerateRandomElementID()
-
+	xmlns:htmlDoc="http://www.example.org/htmlDoc">
 #foreach($key in $formSteps.keySet())
-    <steps stepTitle="$key.getAttributes().getNamedItem("id").getNodeValue()">
+    <steps stepTitle="" stepStyle="$key.getAttributes().getNamedItem("class").getNodeValue()">
     #foreach($item in $formSteps.get($key))
     	#if($item.getNodeName() == "label")
-	        <formElements xsi:type="htmlDoc:HtmlLabel" ID="$item.getAttributes().getNamedItem("id").getNodeValue()" 
-	        	for="$item.getAttributes().getNamedItem("for").getNodeValue()" />
+	        <formElements xsi:type="htmlDoc:Label" ID="$item.getAttributes().getNamedItem("id").getNodeValue()" 
+	        	for="$item.getAttributes().getNamedItem("for").getNodeValue()" value="$item.getTextContent()"
+	        	elementStyle="$item.getAttributes().getNamedItem("class").getNodeValue()" constrastRatio="$item.getAttributes().getNamedItem("ratio").getNodeValue()"/>
 	    #end
 	    #if($item.getNodeName() == "input")
-	    	 <formElements xsi:type="htmlDoc:HtmlInput" ID="$item.getAttributes().getNamedItem("id").getNodeValue()"
-	    	 labelledBy="$item.getAttributes().getNamedItem("labelledBy").getNodeValue()" />
+	    	 <formElements xsi:type="htmlDoc:Input" ID="$item.getAttributes().getNamedItem("id").getNodeValue()"
+	    	 labelledBy="$item.getAttributes().getNamedItem("labelledBy").getNodeValue()" 
+	    	 elementStyle="$item.getAttributes().getNamedItem("class").getNodeValue()"/>
+	    #end
+	    #if($item.getNodeName() == "image")
+	    	<formElements xsi:type="htmlDoc:Image" ID="$item.getAttributes().getNamedItem("id").getNodeValue()" />
 	    #end
     #end
     </steps>
 #end
- 
- </htmlDoc:DifiForm>
+#foreach($key in $formStyles.keySet())
+	<cssStyles selector="$key">
+		#foreach($childKey in $formStyles.get($key).keySet())
+			<cssDeclarations property="$childKey" value="$formStyles.get($key).get($childKey)"/>
+		#end
+	</cssStyles>
+#end
+ </htmlDoc:HtmlRoot>
