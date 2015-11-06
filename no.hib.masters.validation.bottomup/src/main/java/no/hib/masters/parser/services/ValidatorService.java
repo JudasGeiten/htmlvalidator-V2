@@ -41,7 +41,7 @@ public class ValidatorService {
 				.put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
 
 		resourceSet.getPackageRegistry().put(ModelPackage.eNS_URI, ModelPackage.eINSTANCE);
-		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);
+
 	}
 
 	public ArrayList<Diagnostic> ValidateModel(String path) {

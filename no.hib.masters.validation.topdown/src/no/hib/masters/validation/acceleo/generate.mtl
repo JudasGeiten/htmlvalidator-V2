@@ -1,0 +1,19 @@
+[comment encoding = UTF-8 /]
+[module generate('http://www.eclipse.org/emf/2002/Ecore')]
+
+[template public generateElement(anEPackage : EPackage)]
+[comment @main/]
+[file (anEPackage.name.concat('.java'), false, 'UTF-8')]
+		[for (class : EClass | anEPackage.eClassifiers)]
+			
+			[ '[' /]Serializable()[ ']' /]
+			public class [class.name /] {
+				[for (att : EAttribute | class.eAllAttributes)]
+					[ '[' /] System.Xml.Serialization.XmlElement("[att.name/]") [ ']' /]
+					public string [att.name/] { get; set; }
+				[/for]
+			}
+
+		[/for]
+[/file]
+[/template]

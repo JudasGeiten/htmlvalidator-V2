@@ -1,0 +1,47 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>no.hib.masters.validation.acceleo</groupId>
+	<artifactId>no.hib.masters.validation.acceleo</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>topdown</name>
+	<description>Top-down validator</description>
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<useBinaryResources>false</useBinaryResources>
+					<usePlatformResourcePath>true</usePlatformResourcePath>
+					<acceleoProject>
+						<root>${project.basedir}</root>
+						<entries>
+							<entry>
+								<input>src/main/java</input>
+								<output>target/classes</output>
+							</entry>
+						</entries>
+						<jars>
+							<jar>p2.eclipse-plugin:org.obeonetwork.pim.uml2.gen.java</jar>
+						</jars>
+					</acceleoProject>
+					<packagesToRegister>
+						<packageToRegister>org.eclipse.uml2.uml.UMLPackage</packageToRegister>
+						<packageToRegister>no.hib.masters.model</packageToRegister>
+					</packagesToRegister>
+					<uriHandler>org.eclipse.acceleo.maven.AcceleoURIHandler</uriHandler>
+					<failOnError>false</failOnError>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>no.hib.masters.model</groupId>
+			<artifactId>no.hib.masters.model</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+</project>
