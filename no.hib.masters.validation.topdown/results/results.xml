@@ -1,0 +1,38 @@
+<results>
+  <result>
+    <element>
+      <label class="inputLabel" id="UnlinkedlblFirstname">Firstname</label>
+    </element>
+    <errorMessage>Violates lowerbound constraint</errorMessage>
+  </result>
+  <result>
+    <element>
+      <label class="inputLabel" id="UnlinkedlblSurname">Surname</label>
+    </element>
+    <errorMessage>Violates lowerbound constraint</errorMessage>
+  </result>
+  <result>
+    <element>
+      <input class="inputField" type="text" id="inputFirstname2" placeholder="Firstname"/>
+    </element>
+    <errorMessage>Violates lowerbound constraint</errorMessage>
+  </result>
+  <result>
+    <element>
+      <input class="inputField" type="text" id="inputSurname2" placeholder="Surname"/>
+    </element>
+    <errorMessage>Violates lowerbound constraint</errorMessage>
+  </result>
+  <result>
+    <element>
+      <input class="inputField" type="text" id="UnlinkedInputFirstname"/>
+    </element>
+    <errorMessage>Violates lowerbound constraint</errorMessage>
+  </result>
+  <result>
+    <element>
+      <input class="inputField" type="text" id="UnlinkedInputSurname"/>
+    </element>
+    <errorMessage>Violates lowerbound constraint</errorMessage>
+  </result>
+</results>

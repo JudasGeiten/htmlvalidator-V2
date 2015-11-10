@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Form example</title>
+</head>
+
+<style>
+.inputForm {
+	background-color: #008888;
+	padding: 3em;
+	width: 500px;
+	margin: auto;
+	margin-bottom: 5em;
+}
+
+fieldset{
+	border: 0;
+	width:500px;
+	}
+
+.inputLabel {
+	font-weight: bold;
+	color: #0088dd;
+}
+
+.inputField {
+	padding: 0.5em 0;
+	border-radius: 5px;
+	border: solid grey 1px;
+}
+
+.inputButton {
+	padding: 0.5em;
+	float: right;
+	clear: both;
+	margin-top: 3em;
+}
+</style>
+
+<body>
+	<img src="https://www.aventia.no/wp-content/uploads/2012/02/acos-logo-150x150.png" />
+	<img src="https://www.aventia.no/wp-content/uploads/2012/02/acos-logo-150x150.png" alt="logo"/>
+	<fieldset >
+		<legend>
+			<strong>Form</strong>
+		</legend>
+		<form id="validForm" class="inputForm">
+			<label class="inputLabel" for="ValidInputFirstname" id="lblFirstname">Firstname</label>
+			<input class="inputField" type="text" id="ValidInputFirstname" /> <label
+				class="inputLabel" for="ValidInputSurname" id="lblSurname">Surname</label>
+			<input class="inputField" type="text" id="ValidInputSurname" />
+			<button class="inputButton" type="submit">Submit</button>
+
+		</form>
+	</fieldset>
+
+	<fieldset>
+		<legend>
+			<strong>Form</strong>
+		</legend>
+		<form id="invalidForm" class="inputForm">
+			<input class="inputField" type="text" id="inputFirstname2"
+				placeholder="Firstname" /> <input class="inputField" type="text"
+				id="inputSurname2" placeholder="Surname" />
+			<button class="inputButton" type="submit">Submit</button>
+		</form>
+	</fieldset>
+  
+  	<fieldset >
+		<legend>
+			<strong>Form</strong>
+		</legend>
+		<form id="validForm" class="inputForm">
+			<label class="inputLabel" id="UnlinkedlblFirstname">Firstname</label>
+			<input class="inputField" type="text" id="UnlinkedInputFirstname" /> <label
+				class="inputLabel" id="UnlinkedlblSurname">Surname</label>
+			<input class="inputField" type="text" id="UnlinkedInputSurname" />
+			<button class="inputButton" type="submit">Submit</button>
+
+		</form>
+	</fieldset>
+  
+</body>
+</html>
