@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import no.hib.masters.parser.services.ValidatorService;
@@ -60,6 +61,7 @@ public class ValidatorServiceTest {
 		}
 	}
 	
+	@Ignore
 	@Test
 	public void ValidateModelUsingOCLConstraint(){
 		try{

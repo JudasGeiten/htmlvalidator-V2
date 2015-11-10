@@ -58,11 +58,11 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 		switch (eClass.getClassifierID()) {
 			case ModelPackage.HTML_ROOT: return createHtmlRoot();
 			case ModelPackage.FORM_STEP: return createFormStep();
-			case ModelPackage.LABEL: return createLabel();
-			case ModelPackage.INPUT: return createInput();
+			case ModelPackage.LABEL: return createlabel();
+			case ModelPackage.INPUT: return createinput();
 			case ModelPackage.CSS_STYLE: return createCssStyle();
 			case ModelPackage.CSS_DECLARATION: return createCssDeclaration();
-			case ModelPackage.IMAGE: return createImage();
+			case ModelPackage.IMG: return createimg();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -93,8 +93,8 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Label createLabel() {
-		LabelImpl label = new LabelImpl();
+	public label createlabel() {
+		labelImpl label = new labelImpl();
 		return label;
 	}
 
@@ -103,8 +103,8 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Input createInput() {
-		InputImpl input = new InputImpl();
+	public input createinput() {
+		inputImpl input = new inputImpl();
 		return input;
 	}
 
@@ -133,9 +133,9 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Image createImage() {
-		ImageImpl image = new ImageImpl();
-		return image;
+	public img createimg() {
+		imgImpl img = new imgImpl();
+		return img;
 	}
 
 	/**

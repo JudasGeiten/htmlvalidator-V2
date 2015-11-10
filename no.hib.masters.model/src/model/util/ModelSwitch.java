@@ -85,15 +85,15 @@ public class ModelSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case ModelPackage.LABEL: {
-				Label label = (Label)theEObject;
-				T result = caseLabel(label);
+				label label = (label)theEObject;
+				T result = caselabel(label);
 				if (result == null) result = caseFormElement(label);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ModelPackage.INPUT: {
-				Input input = (Input)theEObject;
-				T result = caseInput(input);
+				input input = (input)theEObject;
+				T result = caseinput(input);
 				if (result == null) result = caseFormElement(input);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -110,10 +110,10 @@ public class ModelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ModelPackage.IMAGE: {
-				Image image = (Image)theEObject;
-				T result = caseImage(image);
-				if (result == null) result = caseFormElement(image);
+			case ModelPackage.IMG: {
+				img img = (img)theEObject;
+				T result = caseimg(img);
+				if (result == null) result = caseFormElement(img);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -167,32 +167,32 @@ public class ModelSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Label</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>label</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Label</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>label</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseLabel(Label object) {
+	public T caselabel(label object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Input</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>input</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Input</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>input</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseInput(Input object) {
+	public T caseinput(input object) {
 		return null;
 	}
 
@@ -227,17 +227,17 @@ public class ModelSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Image</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>img</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Image</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>img</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseImage(Image object) {
+	public T caseimg(img object) {
 		return null;
 	}
 

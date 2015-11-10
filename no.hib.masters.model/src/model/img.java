@@ -5,21 +5,21 @@ package model;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Image</b></em>'.
+ * A representation of the model object '<em><b>img</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link model.Image#getAlt <em>Alt</em>}</li>
+ *   <li>{@link model.img#getAlt <em>Alt</em>}</li>
  * </ul>
  *
- * @see model.ModelPackage#getImage()
+ * @see model.ModelPackage#getimg()
  * @model
  * @generated
  */
-public interface Image extends FormElement {
+public interface img extends FormElement {
 	/**
 	 * Returns the value of the '<em><b>Alt</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -30,14 +30,14 @@ public interface Image extends FormElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Alt</em>' attribute.
 	 * @see #setAlt(String)
-	 * @see model.ModelPackage#getImage_Alt()
+	 * @see model.ModelPackage#getimg_Alt()
 	 * @model required="true"
 	 * @generated
 	 */
 	String getAlt();
 
 	/**
-	 * Sets the value of the '{@link model.Image#getAlt <em>Alt</em>}' attribute.
+	 * Sets the value of the '{@link model.img#getAlt <em>Alt</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Alt</em>' attribute.
@@ -46,4 +46,4 @@ public interface Image extends FormElement {
 	 */
 	void setAlt(String value);
 
-} // Image
+} // img

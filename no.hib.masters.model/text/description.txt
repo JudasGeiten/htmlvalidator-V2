@@ -20,14 +20,14 @@ Package model <http://www.example.org/htmlDoc>
     Attribute ID : EString<<1..1>>
     Reference elementStyle : CssStyle<<0..*>>
 
-  Class Label -> FormElement
+  Class label -> FormElement
     Attribute value : EString<<1..1>>
-    Reference for : Input<<1..1>>
+    Reference for : input<<1..1>>
     Attribute constrastRatio : EDouble
 
-  Class Input -> FormElement
+  Class input -> FormElement
     Attribute type : EString<<1..1>>
-    Reference labelledBy : Label<<1..1>>
+    Reference labelledBy : label<<1..1>>
 
   Class CssStyle
     Attribute selector : EString<<1..1>>
@@ -37,5 +37,5 @@ Package model <http://www.example.org/htmlDoc>
     Attribute property : EString<<1..1>>
     Attribute value : EString<<1..1>>
 
-  Class Image -> FormElement
+  Class img -> FormElement
     Attribute alt : EString<<1..1>>

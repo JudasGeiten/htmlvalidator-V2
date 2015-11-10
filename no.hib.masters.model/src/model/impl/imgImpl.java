@@ -2,8 +2,8 @@
  */
 package model.impl;
 
-import model.Image;
 import model.ModelPackage;
+import model.img;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -13,18 +13,18 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Image</b></em>'.
+ * An implementation of the model object '<em><b>img</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link model.impl.ImageImpl#getAlt <em>Alt</em>}</li>
+ *   <li>{@link model.impl.imgImpl#getAlt <em>Alt</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ImageImpl extends FormElementImpl implements Image {
+public class imgImpl extends FormElementImpl implements img {
 	/**
 	 * The default value of the '{@link #getAlt() <em>Alt</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -50,7 +50,7 @@ public class ImageImpl extends FormElementImpl implements Image {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ImageImpl() {
+	protected imgImpl() {
 		super();
 	}
 
@@ -61,7 +61,7 @@ public class ImageImpl extends FormElementImpl implements Image {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ModelPackage.Literals.IMAGE;
+		return ModelPackage.Literals.IMG;
 	}
 
 	/**
@@ -82,7 +82,7 @@ public class ImageImpl extends FormElementImpl implements Image {
 		String oldAlt = alt;
 		alt = newAlt;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.IMAGE__ALT, oldAlt, alt));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.IMG__ALT, oldAlt, alt));
 	}
 
 	/**
@@ -93,7 +93,7 @@ public class ImageImpl extends FormElementImpl implements Image {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ModelPackage.IMAGE__ALT:
+			case ModelPackage.IMG__ALT:
 				return getAlt();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -107,7 +107,7 @@ public class ImageImpl extends FormElementImpl implements Image {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ModelPackage.IMAGE__ALT:
+			case ModelPackage.IMG__ALT:
 				setAlt((String)newValue);
 				return;
 		}
@@ -122,7 +122,7 @@ public class ImageImpl extends FormElementImpl implements Image {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ModelPackage.IMAGE__ALT:
+			case ModelPackage.IMG__ALT:
 				setAlt(ALT_EDEFAULT);
 				return;
 		}
@@ -137,7 +137,7 @@ public class ImageImpl extends FormElementImpl implements Image {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ModelPackage.IMAGE__ALT:
+			case ModelPackage.IMG__ALT:
 				return ALT_EDEFAULT == null ? alt != null : !ALT_EDEFAULT.equals(alt);
 		}
 		return super.eIsSet(featureID);
@@ -159,4 +159,4 @@ public class ImageImpl extends FormElementImpl implements Image {
 		return result.toString();
 	}
 
-} //ImageImpl
+} //imgImpl

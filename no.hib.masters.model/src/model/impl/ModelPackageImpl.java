@@ -7,11 +7,13 @@ import model.CssStyle;
 import model.FormElement;
 import model.FormStep;
 import model.HtmlRoot;
-import model.Image;
-import model.Input;
-import model.Label;
 import model.ModelFactory;
 import model.ModelPackage;
+import model.img;
+import model.input;
+import model.label;
+
+import org.eclipse.emf.common.util.URI;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -81,7 +83,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass imageEClass = null;
+	private EClass imgEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -239,7 +241,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getLabel() {
+	public EClass getlabel() {
 		return labelEClass;
 	}
 
@@ -248,7 +250,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLabel_Value() {
+	public EAttribute getlabel_Value() {
 		return (EAttribute)labelEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -257,7 +259,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLabel_For() {
+	public EReference getlabel_For() {
 		return (EReference)labelEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -266,7 +268,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLabel_ConstrastRatio() {
+	public EAttribute getlabel_ConstrastRatio() {
 		return (EAttribute)labelEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -275,7 +277,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getInput() {
+	public EClass getinput() {
 		return inputEClass;
 	}
 
@@ -284,7 +286,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getInput_Type() {
+	public EAttribute getinput_Type() {
 		return (EAttribute)inputEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -293,7 +295,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInput_LabelledBy() {
+	public EReference getinput_LabelledBy() {
 		return (EReference)inputEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -356,8 +358,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getImage() {
-		return imageEClass;
+	public EClass getimg() {
+		return imgEClass;
 	}
 
 	/**
@@ -365,8 +367,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getImage_Alt() {
-		return (EAttribute)imageEClass.getEStructuralFeatures().get(0);
+	public EAttribute getimg_Alt() {
+		return (EAttribute)imgEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -427,8 +429,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		createEAttribute(cssDeclarationEClass, CSS_DECLARATION__PROPERTY);
 		createEAttribute(cssDeclarationEClass, CSS_DECLARATION__VALUE);
 
-		imageEClass = createEClass(IMAGE);
-		createEAttribute(imageEClass, IMAGE__ALT);
+		imgEClass = createEClass(IMG);
+		createEAttribute(imgEClass, IMG__ALT);
 	}
 
 	/**
@@ -461,7 +463,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		// Add supertypes to classes
 		labelEClass.getESuperTypes().add(this.getFormElement());
 		inputEClass.getESuperTypes().add(this.getFormElement());
-		imageEClass.getESuperTypes().add(this.getFormElement());
+		imgEClass.getESuperTypes().add(this.getFormElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(htmlRootEClass, HtmlRoot.class, "HtmlRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -477,14 +479,14 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEAttribute(getFormElement_ID(), ecorePackage.getEString(), "ID", null, 1, 1, FormElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFormElement_ElementStyle(), this.getCssStyle(), null, "elementStyle", null, 0, -1, FormElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(labelEClass, Label.class, "Label", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getLabel_Value(), ecorePackage.getEString(), "value", null, 1, 1, Label.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLabel_For(), this.getInput(), this.getInput_LabelledBy(), "for", null, 1, 1, Label.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLabel_ConstrastRatio(), ecorePackage.getEDouble(), "constrastRatio", null, 0, 1, Label.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(labelEClass, label.class, "label", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getlabel_Value(), ecorePackage.getEString(), "value", null, 1, 1, label.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getlabel_For(), this.getinput(), this.getinput_LabelledBy(), "for", null, 1, 1, label.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getlabel_ConstrastRatio(), ecorePackage.getEDouble(), "constrastRatio", null, 0, 1, label.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(inputEClass, Input.class, "Input", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getInput_Type(), ecorePackage.getEString(), "type", "text", 1, 1, Input.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getInput_LabelledBy(), this.getLabel(), this.getLabel_For(), "labelledBy", null, 1, 1, Input.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(inputEClass, input.class, "input", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getinput_Type(), ecorePackage.getEString(), "type", "text", 1, 1, input.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getinput_LabelledBy(), this.getlabel(), this.getlabel_For(), "labelledBy", null, 1, 1, input.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(cssStyleEClass, CssStyle.class, "CssStyle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCssStyle_Selector(), ecorePackage.getEString(), "selector", null, 1, 1, CssStyle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -494,8 +496,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEAttribute(getCssDeclaration_Property(), ecorePackage.getEString(), "property", null, 1, 1, CssDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCssDeclaration_Value(), ecorePackage.getEString(), "value", null, 1, 1, CssDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(imageEClass, Image.class, "Image", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getImage_Alt(), ecorePackage.getEString(), "alt", null, 1, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(imgEClass, img.class, "img", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getimg_Alt(), ecorePackage.getEString(), "alt", null, 1, 1, img.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -503,10 +505,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		// Create annotations
 		// http://www.eclipse.org/OCL/Import
 		createImportAnnotations();
-		// http://www.eclipse.org/emf/2002/Ecore
-		createEcoreAnnotations();
-		// http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot
-		createPivotAnnotations();
+		// labels
+		createLabelsAnnotations();
 	}
 
 	/**
@@ -526,36 +526,20 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	}
 
 	/**
-	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+	 * Initializes the annotations for <b>labels</b>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void createEcoreAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore";	
+	protected void createLabelsAnnotations() {
+		String source = "labels";	
 		addAnnotation
-		  (this, 
+		  (getlabel_For(), 
 		   source, 
 		   new String[] {
-			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
-		   });
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createPivotAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";	
-		addAnnotation
-		  (labelEClass, 
-		   source, 
-		   new String[] {
-			 null, "constrastRatio >= 7"
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//label/for")
 		   });
 	}
 

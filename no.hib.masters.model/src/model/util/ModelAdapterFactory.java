@@ -80,12 +80,12 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 				return createFormElementAdapter();
 			}
 			@Override
-			public Adapter caseLabel(Label object) {
-				return createLabelAdapter();
+			public Adapter caselabel(label object) {
+				return createlabelAdapter();
 			}
 			@Override
-			public Adapter caseInput(Input object) {
-				return createInputAdapter();
+			public Adapter caseinput(input object) {
+				return createinputAdapter();
 			}
 			@Override
 			public Adapter caseCssStyle(CssStyle object) {
@@ -96,8 +96,8 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 				return createCssDeclarationAdapter();
 			}
 			@Override
-			public Adapter caseImage(Image object) {
-				return createImageAdapter();
+			public Adapter caseimg(img object) {
+				return createimgAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -162,30 +162,30 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link model.Label <em>Label</em>}'.
+	 * Creates a new adapter for an object of class '{@link model.label <em>label</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see model.Label
+	 * @see model.label
 	 * @generated
 	 */
-	public Adapter createLabelAdapter() {
+	public Adapter createlabelAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link model.Input <em>Input</em>}'.
+	 * Creates a new adapter for an object of class '{@link model.input <em>input</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see model.Input
+	 * @see model.input
 	 * @generated
 	 */
-	public Adapter createInputAdapter() {
+	public Adapter createinputAdapter() {
 		return null;
 	}
 
@@ -218,16 +218,16 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link model.Image <em>Image</em>}'.
+	 * Creates a new adapter for an object of class '{@link model.img <em>img</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see model.Image
+	 * @see model.img
 	 * @generated
 	 */
-	public Adapter createImageAdapter() {
+	public Adapter createimgAdapter() {
 		return null;
 	}
 

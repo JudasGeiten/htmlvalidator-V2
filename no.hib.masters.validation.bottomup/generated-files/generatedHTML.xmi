@@ -3,25 +3,25 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xmlns:htmlDoc="http://www.example.org/htmlDoc">
     <steps stepTitle="" stepStyle="inputForm">
-        		        <formElements xsi:type="htmlDoc:Label" ID="lblFirstname" 
-	        	for="inputFirstname" value="Firstname"
-	        	elementStyle="inputLabel" constrastRatio="1.1"/>
-	    	    	            		        <formElements xsi:type="htmlDoc:Label" ID="lblSurname" 
-	        	for="inputSurname" value="Surname"
-	        	elementStyle="inputLabel" constrastRatio="1.1"/>
-	    	    	            		    	    	 <formElements xsi:type="htmlDoc:Input" ID="inputFirstname"
-	    	 labelledBy="lblFirstname" 
+        		    	    	 <formElements xsi:type="htmlDoc:input" ID="inputFirstname2"
+	    	 labelledBy="" 
 	    	 elementStyle="inputField"/>
-	    	            		    	    	 <formElements xsi:type="htmlDoc:Input" ID="inputSurname"
-	    	 labelledBy="lblSurname" 
+	    	            		    	    	 <formElements xsi:type="htmlDoc:input" ID="inputSurname2"
+	    	 labelledBy="" 
 	    	 elementStyle="inputField"/>
 	    	            </steps>
     <steps stepTitle="" stepStyle="inputForm">
-        		    	    	 <formElements xsi:type="htmlDoc:Input" ID="inputFirstname2"
-	    	 labelledBy="" 
+        		        <formElements xsi:type="htmlDoc:label" ID="lblFirstname" 
+	        	for="inputFirstname" value="Firstname"
+	        	elementStyle="inputLabel" constrastRatio="1.1"/>
+	    	    	            		        <formElements xsi:type="htmlDoc:label" ID="lblSurname" 
+	        	for="inputSurname" value="Surname"
+	        	elementStyle="inputLabel" constrastRatio="1.1"/>
+	    	    	            		    	    	 <formElements xsi:type="htmlDoc:input" ID="inputFirstname"
+	    	 labelledBy="lblFirstname" 
 	    	 elementStyle="inputField"/>
-	    	            		    	    	 <formElements xsi:type="htmlDoc:Input" ID="inputSurname2"
-	    	 labelledBy="" 
+	    	            		    	    	 <formElements xsi:type="htmlDoc:input" ID="inputSurname"
+	    	 labelledBy="lblSurname" 
 	    	 elementStyle="inputField"/>
 	    	            </steps>
 	<cssStyles selector="inputField">

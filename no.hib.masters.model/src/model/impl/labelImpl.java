@@ -2,9 +2,9 @@
  */
 package model.impl;
 
-import model.Input;
-import model.Label;
 import model.ModelPackage;
+import model.input;
+import model.label;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -16,20 +16,20 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Label</b></em>'.
+ * An implementation of the model object '<em><b>label</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link model.impl.LabelImpl#getValue <em>Value</em>}</li>
- *   <li>{@link model.impl.LabelImpl#getFor <em>For</em>}</li>
- *   <li>{@link model.impl.LabelImpl#getConstrastRatio <em>Constrast Ratio</em>}</li>
+ *   <li>{@link model.impl.labelImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link model.impl.labelImpl#getFor <em>For</em>}</li>
+ *   <li>{@link model.impl.labelImpl#getConstrastRatio <em>Constrast Ratio</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class LabelImpl extends FormElementImpl implements Label {
+public class labelImpl extends FormElementImpl implements label {
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -58,7 +58,7 @@ public class LabelImpl extends FormElementImpl implements Label {
 	 * @generated
 	 * @ordered
 	 */
-	protected Input for_;
+	protected input for_;
 
 	/**
 	 * The default value of the '{@link #getConstrastRatio() <em>Constrast Ratio</em>}' attribute.
@@ -85,7 +85,7 @@ public class LabelImpl extends FormElementImpl implements Label {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LabelImpl() {
+	protected labelImpl() {
 		super();
 	}
 
@@ -125,10 +125,10 @@ public class LabelImpl extends FormElementImpl implements Label {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Input getFor() {
+	public input getFor() {
 		if (for_ != null && for_.eIsProxy()) {
 			InternalEObject oldFor = (InternalEObject)for_;
-			for_ = (Input)eResolveProxy(oldFor);
+			for_ = (input)eResolveProxy(oldFor);
 			if (for_ != oldFor) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackage.LABEL__FOR, oldFor, for_));
@@ -142,7 +142,7 @@ public class LabelImpl extends FormElementImpl implements Label {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Input basicGetFor() {
+	public input basicGetFor() {
 		return for_;
 	}
 
@@ -151,8 +151,8 @@ public class LabelImpl extends FormElementImpl implements Label {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetFor(Input newFor, NotificationChain msgs) {
-		Input oldFor = for_;
+	public NotificationChain basicSetFor(input newFor, NotificationChain msgs) {
+		input oldFor = for_;
 		for_ = newFor;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModelPackage.LABEL__FOR, oldFor, newFor);
@@ -166,13 +166,13 @@ public class LabelImpl extends FormElementImpl implements Label {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFor(Input newFor) {
+	public void setFor(input newFor) {
 		if (newFor != for_) {
 			NotificationChain msgs = null;
 			if (for_ != null)
-				msgs = ((InternalEObject)for_).eInverseRemove(this, ModelPackage.INPUT__LABELLED_BY, Input.class, msgs);
+				msgs = ((InternalEObject)for_).eInverseRemove(this, ModelPackage.INPUT__LABELLED_BY, input.class, msgs);
 			if (newFor != null)
-				msgs = ((InternalEObject)newFor).eInverseAdd(this, ModelPackage.INPUT__LABELLED_BY, Input.class, msgs);
+				msgs = ((InternalEObject)newFor).eInverseAdd(this, ModelPackage.INPUT__LABELLED_BY, input.class, msgs);
 			msgs = basicSetFor(newFor, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -211,8 +211,8 @@ public class LabelImpl extends FormElementImpl implements Label {
 		switch (featureID) {
 			case ModelPackage.LABEL__FOR:
 				if (for_ != null)
-					msgs = ((InternalEObject)for_).eInverseRemove(this, ModelPackage.INPUT__LABELLED_BY, Input.class, msgs);
-				return basicSetFor((Input)otherEnd, msgs);
+					msgs = ((InternalEObject)for_).eInverseRemove(this, ModelPackage.INPUT__LABELLED_BY, input.class, msgs);
+				return basicSetFor((input)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -262,7 +262,7 @@ public class LabelImpl extends FormElementImpl implements Label {
 				setValue((String)newValue);
 				return;
 			case ModelPackage.LABEL__FOR:
-				setFor((Input)newValue);
+				setFor((input)newValue);
 				return;
 			case ModelPackage.LABEL__CONSTRAST_RATIO:
 				setConstrastRatio((Double)newValue);
@@ -283,7 +283,7 @@ public class LabelImpl extends FormElementImpl implements Label {
 				setValue(VALUE_EDEFAULT);
 				return;
 			case ModelPackage.LABEL__FOR:
-				setFor((Input)null);
+				setFor((input)null);
 				return;
 			case ModelPackage.LABEL__CONSTRAST_RATIO:
 				setConstrastRatio(CONSTRAST_RATIO_EDEFAULT);
@@ -328,4 +328,4 @@ public class LabelImpl extends FormElementImpl implements Label {
 		return result.toString();
 	}
 
-} //LabelImpl
+} //labelImpl

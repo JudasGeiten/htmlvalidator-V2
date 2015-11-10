@@ -5,8 +5,8 @@
 package model.validation;
 
 import model.CssStyle;
-import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.common.util.EList;
 
 /**
  * A sample validator interface for {@link model.FormElement}.
@@ -18,10 +18,5 @@ public interface FormElementValidator {
 	boolean validate();
 
 	boolean validateID(String value);
-
 	boolean validateElementStyle(EList<CssStyle> value);
-
-	boolean validateConstrastRatio(int value);
-
-	boolean validateStyle(CssStyle value);
 }

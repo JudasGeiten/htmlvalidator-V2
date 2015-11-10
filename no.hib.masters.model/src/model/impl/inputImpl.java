@@ -2,9 +2,9 @@
  */
 package model.impl;
 
-import model.Input;
-import model.Label;
 import model.ModelPackage;
+import model.input;
+import model.label;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -16,19 +16,19 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Input</b></em>'.
+ * An implementation of the model object '<em><b>input</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link model.impl.InputImpl#getType <em>Type</em>}</li>
- *   <li>{@link model.impl.InputImpl#getLabelledBy <em>Labelled By</em>}</li>
+ *   <li>{@link model.impl.inputImpl#getType <em>Type</em>}</li>
+ *   <li>{@link model.impl.inputImpl#getLabelledBy <em>Labelled By</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class InputImpl extends FormElementImpl implements Input {
+public class inputImpl extends FormElementImpl implements input {
 	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -57,14 +57,14 @@ public class InputImpl extends FormElementImpl implements Input {
 	 * @generated
 	 * @ordered
 	 */
-	protected Label labelledBy;
+	protected label labelledBy;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected InputImpl() {
+	protected inputImpl() {
 		super();
 	}
 
@@ -104,10 +104,10 @@ public class InputImpl extends FormElementImpl implements Input {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Label getLabelledBy() {
+	public label getLabelledBy() {
 		if (labelledBy != null && labelledBy.eIsProxy()) {
 			InternalEObject oldLabelledBy = (InternalEObject)labelledBy;
-			labelledBy = (Label)eResolveProxy(oldLabelledBy);
+			labelledBy = (label)eResolveProxy(oldLabelledBy);
 			if (labelledBy != oldLabelledBy) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackage.INPUT__LABELLED_BY, oldLabelledBy, labelledBy));
@@ -121,7 +121,7 @@ public class InputImpl extends FormElementImpl implements Input {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Label basicGetLabelledBy() {
+	public label basicGetLabelledBy() {
 		return labelledBy;
 	}
 
@@ -130,8 +130,8 @@ public class InputImpl extends FormElementImpl implements Input {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetLabelledBy(Label newLabelledBy, NotificationChain msgs) {
-		Label oldLabelledBy = labelledBy;
+	public NotificationChain basicSetLabelledBy(label newLabelledBy, NotificationChain msgs) {
+		label oldLabelledBy = labelledBy;
 		labelledBy = newLabelledBy;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModelPackage.INPUT__LABELLED_BY, oldLabelledBy, newLabelledBy);
@@ -145,13 +145,13 @@ public class InputImpl extends FormElementImpl implements Input {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLabelledBy(Label newLabelledBy) {
+	public void setLabelledBy(label newLabelledBy) {
 		if (newLabelledBy != labelledBy) {
 			NotificationChain msgs = null;
 			if (labelledBy != null)
-				msgs = ((InternalEObject)labelledBy).eInverseRemove(this, ModelPackage.LABEL__FOR, Label.class, msgs);
+				msgs = ((InternalEObject)labelledBy).eInverseRemove(this, ModelPackage.LABEL__FOR, label.class, msgs);
 			if (newLabelledBy != null)
-				msgs = ((InternalEObject)newLabelledBy).eInverseAdd(this, ModelPackage.LABEL__FOR, Label.class, msgs);
+				msgs = ((InternalEObject)newLabelledBy).eInverseAdd(this, ModelPackage.LABEL__FOR, label.class, msgs);
 			msgs = basicSetLabelledBy(newLabelledBy, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -169,8 +169,8 @@ public class InputImpl extends FormElementImpl implements Input {
 		switch (featureID) {
 			case ModelPackage.INPUT__LABELLED_BY:
 				if (labelledBy != null)
-					msgs = ((InternalEObject)labelledBy).eInverseRemove(this, ModelPackage.LABEL__FOR, Label.class, msgs);
-				return basicSetLabelledBy((Label)otherEnd, msgs);
+					msgs = ((InternalEObject)labelledBy).eInverseRemove(this, ModelPackage.LABEL__FOR, label.class, msgs);
+				return basicSetLabelledBy((label)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -218,7 +218,7 @@ public class InputImpl extends FormElementImpl implements Input {
 				setType((String)newValue);
 				return;
 			case ModelPackage.INPUT__LABELLED_BY:
-				setLabelledBy((Label)newValue);
+				setLabelledBy((label)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -236,7 +236,7 @@ public class InputImpl extends FormElementImpl implements Input {
 				setType(TYPE_EDEFAULT);
 				return;
 			case ModelPackage.INPUT__LABELLED_BY:
-				setLabelledBy((Label)null);
+				setLabelledBy((label)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -274,4 +274,4 @@ public class InputImpl extends FormElementImpl implements Input {
 		return result.toString();
 	}
 
-} //InputImpl
+} //inputImpl

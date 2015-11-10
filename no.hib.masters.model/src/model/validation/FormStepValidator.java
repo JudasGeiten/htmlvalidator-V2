@@ -20,6 +20,5 @@ public interface FormStepValidator {
 
 	boolean validateStepTitle(String value);
 	boolean validateFormElements(EList<FormElement> value);
-
 	boolean validateStepStyle(EList<CssStyle> value);
 }

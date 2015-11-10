@@ -40,22 +40,22 @@ public interface ModelFactory extends EFactory {
 	FormStep createFormStep();
 
 	/**
-	 * Returns a new object of class '<em>Label</em>'.
+	 * Returns a new object of class '<em>label</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Label</em>'.
+	 * @return a new object of class '<em>label</em>'.
 	 * @generated
 	 */
-	Label createLabel();
+	label createlabel();
 
 	/**
-	 * Returns a new object of class '<em>Input</em>'.
+	 * Returns a new object of class '<em>input</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Input</em>'.
+	 * @return a new object of class '<em>input</em>'.
 	 * @generated
 	 */
-	Input createInput();
+	input createinput();
 
 	/**
 	 * Returns a new object of class '<em>Css Style</em>'.
@@ -76,13 +76,13 @@ public interface ModelFactory extends EFactory {
 	CssDeclaration createCssDeclaration();
 
 	/**
-	 * Returns a new object of class '<em>Image</em>'.
+	 * Returns a new object of class '<em>img</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Image</em>'.
+	 * @return a new object of class '<em>img</em>'.
 	 * @generated
 	 */
-	Image createImage();
+	img createimg();
 
 	/**
 	 * Returns the package supported by this factory.

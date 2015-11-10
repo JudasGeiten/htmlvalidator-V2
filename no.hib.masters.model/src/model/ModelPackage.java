@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EReference;
  * @see model.ModelFactory
  * @model kind="package"
  *        annotation="http://www.eclipse.org/OCL/Import ecore='http://www.eclipse.org/emf/2002/Ecore'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore invocationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' settingDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' validationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot'"
  * @generated
  */
 public interface ModelPackage extends EPackage {
@@ -206,11 +205,11 @@ public interface ModelPackage extends EPackage {
 	int FORM_ELEMENT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link model.impl.LabelImpl <em>Label</em>}' class.
+	 * The meta object id for the '{@link model.impl.labelImpl <em>label</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see model.impl.LabelImpl
-	 * @see model.impl.ModelPackageImpl#getLabel()
+	 * @see model.impl.labelImpl
+	 * @see model.impl.ModelPackageImpl#getlabel()
 	 * @generated
 	 */
 	int LABEL = 3;
@@ -261,7 +260,7 @@ public interface ModelPackage extends EPackage {
 	int LABEL__CONSTRAST_RATIO = FORM_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the '<em>Label</em>' class.
+	 * The number of structural features of the '<em>label</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -270,7 +269,7 @@ public interface ModelPackage extends EPackage {
 	int LABEL_FEATURE_COUNT = FORM_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of operations of the '<em>Label</em>' class.
+	 * The number of operations of the '<em>label</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -279,11 +278,11 @@ public interface ModelPackage extends EPackage {
 	int LABEL_OPERATION_COUNT = FORM_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link model.impl.InputImpl <em>Input</em>}' class.
+	 * The meta object id for the '{@link model.impl.inputImpl <em>input</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see model.impl.InputImpl
-	 * @see model.impl.ModelPackageImpl#getInput()
+	 * @see model.impl.inputImpl
+	 * @see model.impl.ModelPackageImpl#getinput()
 	 * @generated
 	 */
 	int INPUT = 4;
@@ -325,7 +324,7 @@ public interface ModelPackage extends EPackage {
 	int INPUT__LABELLED_BY = FORM_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Input</em>' class.
+	 * The number of structural features of the '<em>input</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -334,7 +333,7 @@ public interface ModelPackage extends EPackage {
 	int INPUT_FEATURE_COUNT = FORM_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of operations of the '<em>Input</em>' class.
+	 * The number of operations of the '<em>input</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -434,16 +433,15 @@ public interface ModelPackage extends EPackage {
 	 */
 	int CSS_DECLARATION_OPERATION_COUNT = 0;
 
-
 	/**
-	 * The meta object id for the '{@link model.impl.ImageImpl <em>Image</em>}' class.
+	 * The meta object id for the '{@link model.impl.imgImpl <em>img</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see model.impl.ImageImpl
-	 * @see model.impl.ModelPackageImpl#getImage()
+	 * @see model.impl.imgImpl
+	 * @see model.impl.ModelPackageImpl#getimg()
 	 * @generated
 	 */
-	int IMAGE = 7;
+	int IMG = 7;
 
 	/**
 	 * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -452,7 +450,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE__ID = FORM_ELEMENT__ID;
+	int IMG__ID = FORM_ELEMENT__ID;
 
 	/**
 	 * The feature id for the '<em><b>Element Style</b></em>' reference list.
@@ -461,7 +459,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE__ELEMENT_STYLE = FORM_ELEMENT__ELEMENT_STYLE;
+	int IMG__ELEMENT_STYLE = FORM_ELEMENT__ELEMENT_STYLE;
 
 	/**
 	 * The feature id for the '<em><b>Alt</b></em>' attribute.
@@ -470,25 +468,25 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE__ALT = FORM_ELEMENT_FEATURE_COUNT + 0;
+	int IMG__ALT = FORM_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Image</em>' class.
+	 * The number of structural features of the '<em>img</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_FEATURE_COUNT = FORM_ELEMENT_FEATURE_COUNT + 1;
+	int IMG_FEATURE_COUNT = FORM_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Image</em>' class.
+	 * The number of operations of the '<em>img</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_OPERATION_COUNT = FORM_ELEMENT_OPERATION_COUNT + 0;
+	int IMG_OPERATION_COUNT = FORM_ELEMENT_OPERATION_COUNT + 0;
 
 
 	/**
@@ -599,79 +597,79 @@ public interface ModelPackage extends EPackage {
 	EReference getFormElement_ElementStyle();
 
 	/**
-	 * Returns the meta object for class '{@link model.Label <em>Label</em>}'.
+	 * Returns the meta object for class '{@link model.label <em>label</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Label</em>'.
-	 * @see model.Label
+	 * @return the meta object for class '<em>label</em>'.
+	 * @see model.label
 	 * @generated
 	 */
-	EClass getLabel();
+	EClass getlabel();
 
 	/**
-	 * Returns the meta object for the attribute '{@link model.Label#getValue <em>Value</em>}'.
+	 * Returns the meta object for the attribute '{@link model.label#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see model.Label#getValue()
-	 * @see #getLabel()
+	 * @see model.label#getValue()
+	 * @see #getlabel()
 	 * @generated
 	 */
-	EAttribute getLabel_Value();
+	EAttribute getlabel_Value();
 
 	/**
-	 * Returns the meta object for the reference '{@link model.Label#getFor <em>For</em>}'.
+	 * Returns the meta object for the reference '{@link model.label#getFor <em>For</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>For</em>'.
-	 * @see model.Label#getFor()
-	 * @see #getLabel()
+	 * @see model.label#getFor()
+	 * @see #getlabel()
 	 * @generated
 	 */
-	EReference getLabel_For();
+	EReference getlabel_For();
 
 	/**
-	 * Returns the meta object for the attribute '{@link model.Label#getConstrastRatio <em>Constrast Ratio</em>}'.
+	 * Returns the meta object for the attribute '{@link model.label#getConstrastRatio <em>Constrast Ratio</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Constrast Ratio</em>'.
-	 * @see model.Label#getConstrastRatio()
-	 * @see #getLabel()
+	 * @see model.label#getConstrastRatio()
+	 * @see #getlabel()
 	 * @generated
 	 */
-	EAttribute getLabel_ConstrastRatio();
+	EAttribute getlabel_ConstrastRatio();
 
 	/**
-	 * Returns the meta object for class '{@link model.Input <em>Input</em>}'.
+	 * Returns the meta object for class '{@link model.input <em>input</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Input</em>'.
-	 * @see model.Input
+	 * @return the meta object for class '<em>input</em>'.
+	 * @see model.input
 	 * @generated
 	 */
-	EClass getInput();
+	EClass getinput();
 
 	/**
-	 * Returns the meta object for the attribute '{@link model.Input#getType <em>Type</em>}'.
+	 * Returns the meta object for the attribute '{@link model.input#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see model.Input#getType()
-	 * @see #getInput()
+	 * @see model.input#getType()
+	 * @see #getinput()
 	 * @generated
 	 */
-	EAttribute getInput_Type();
+	EAttribute getinput_Type();
 
 	/**
-	 * Returns the meta object for the reference '{@link model.Input#getLabelledBy <em>Labelled By</em>}'.
+	 * Returns the meta object for the reference '{@link model.input#getLabelledBy <em>Labelled By</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Labelled By</em>'.
-	 * @see model.Input#getLabelledBy()
-	 * @see #getInput()
+	 * @see model.input#getLabelledBy()
+	 * @see #getinput()
 	 * @generated
 	 */
-	EReference getInput_LabelledBy();
+	EReference getinput_LabelledBy();
 
 	/**
 	 * Returns the meta object for class '{@link model.CssStyle <em>Css Style</em>}'.
@@ -738,25 +736,25 @@ public interface ModelPackage extends EPackage {
 	EAttribute getCssDeclaration_Value();
 
 	/**
-	 * Returns the meta object for class '{@link model.Image <em>Image</em>}'.
+	 * Returns the meta object for class '{@link model.img <em>img</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Image</em>'.
-	 * @see model.Image
+	 * @return the meta object for class '<em>img</em>'.
+	 * @see model.img
 	 * @generated
 	 */
-	EClass getImage();
+	EClass getimg();
 
 	/**
-	 * Returns the meta object for the attribute '{@link model.Image#getAlt <em>Alt</em>}'.
+	 * Returns the meta object for the attribute '{@link model.img#getAlt <em>Alt</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Alt</em>'.
-	 * @see model.Image#getAlt()
-	 * @see #getImage()
+	 * @see model.img#getAlt()
+	 * @see #getimg()
 	 * @generated
 	 */
-	EAttribute getImage_Alt();
+	EAttribute getimg_Alt();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -868,14 +866,14 @@ public interface ModelPackage extends EPackage {
 		EReference FORM_ELEMENT__ELEMENT_STYLE = eINSTANCE.getFormElement_ElementStyle();
 
 		/**
-		 * The meta object literal for the '{@link model.impl.LabelImpl <em>Label</em>}' class.
+		 * The meta object literal for the '{@link model.impl.labelImpl <em>label</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see model.impl.LabelImpl
-		 * @see model.impl.ModelPackageImpl#getLabel()
+		 * @see model.impl.labelImpl
+		 * @see model.impl.ModelPackageImpl#getlabel()
 		 * @generated
 		 */
-		EClass LABEL = eINSTANCE.getLabel();
+		EClass LABEL = eINSTANCE.getlabel();
 
 		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
@@ -883,7 +881,7 @@ public interface ModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LABEL__VALUE = eINSTANCE.getLabel_Value();
+		EAttribute LABEL__VALUE = eINSTANCE.getlabel_Value();
 
 		/**
 		 * The meta object literal for the '<em><b>For</b></em>' reference feature.
@@ -891,7 +889,7 @@ public interface ModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LABEL__FOR = eINSTANCE.getLabel_For();
+		EReference LABEL__FOR = eINSTANCE.getlabel_For();
 
 		/**
 		 * The meta object literal for the '<em><b>Constrast Ratio</b></em>' attribute feature.
@@ -899,17 +897,17 @@ public interface ModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LABEL__CONSTRAST_RATIO = eINSTANCE.getLabel_ConstrastRatio();
+		EAttribute LABEL__CONSTRAST_RATIO = eINSTANCE.getlabel_ConstrastRatio();
 
 		/**
-		 * The meta object literal for the '{@link model.impl.InputImpl <em>Input</em>}' class.
+		 * The meta object literal for the '{@link model.impl.inputImpl <em>input</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see model.impl.InputImpl
-		 * @see model.impl.ModelPackageImpl#getInput()
+		 * @see model.impl.inputImpl
+		 * @see model.impl.ModelPackageImpl#getinput()
 		 * @generated
 		 */
-		EClass INPUT = eINSTANCE.getInput();
+		EClass INPUT = eINSTANCE.getinput();
 
 		/**
 		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
@@ -917,7 +915,7 @@ public interface ModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute INPUT__TYPE = eINSTANCE.getInput_Type();
+		EAttribute INPUT__TYPE = eINSTANCE.getinput_Type();
 
 		/**
 		 * The meta object literal for the '<em><b>Labelled By</b></em>' reference feature.
@@ -925,7 +923,7 @@ public interface ModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference INPUT__LABELLED_BY = eINSTANCE.getInput_LabelledBy();
+		EReference INPUT__LABELLED_BY = eINSTANCE.getinput_LabelledBy();
 
 		/**
 		 * The meta object literal for the '{@link model.impl.CssStyleImpl <em>Css Style</em>}' class.
@@ -980,14 +978,14 @@ public interface ModelPackage extends EPackage {
 		EAttribute CSS_DECLARATION__VALUE = eINSTANCE.getCssDeclaration_Value();
 
 		/**
-		 * The meta object literal for the '{@link model.impl.ImageImpl <em>Image</em>}' class.
+		 * The meta object literal for the '{@link model.impl.imgImpl <em>img</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see model.impl.ImageImpl
-		 * @see model.impl.ModelPackageImpl#getImage()
+		 * @see model.impl.imgImpl
+		 * @see model.impl.ModelPackageImpl#getimg()
 		 * @generated
 		 */
-		EClass IMAGE = eINSTANCE.getImage();
+		EClass IMG = eINSTANCE.getimg();
 
 		/**
 		 * The meta object literal for the '<em><b>Alt</b></em>' attribute feature.
@@ -995,7 +993,7 @@ public interface ModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute IMAGE__ALT = eINSTANCE.getImage_Alt();
+		EAttribute IMG__ALT = eINSTANCE.getimg_Alt();
 
 	}
 
