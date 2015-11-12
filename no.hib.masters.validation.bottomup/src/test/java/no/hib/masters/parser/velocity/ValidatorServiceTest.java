@@ -3,12 +3,18 @@ package no.hib.masters.parser.velocity;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.w3c.dom.Document;
 
+import no.hib.masters.parser.services.ReportService;
 import no.hib.masters.parser.services.ValidatorService;
 
 public class ValidatorServiceTest {
@@ -22,7 +28,8 @@ public class ValidatorServiceTest {
 
 	@Test
 	public void ValidateValidModelTest() {
-		ArrayList<Diagnostic> res = service.ValidateModel("generated-files/valid.xmi");
+		List<Diagnostic> res = service.ValidateModel("generated-files/valid.xmi");
+		
 		for(Diagnostic diag : res)
 		{
 			for(Diagnostic child : diag.getChildren())
@@ -35,7 +42,20 @@ public class ValidatorServiceTest {
 	
 	@Test
 	public void ValidateInvalidModelTest(){
-		ArrayList<Diagnostic> res = service.ValidateModel("generated-files/invalid.xmi");
+		List<Diagnostic> res = service.ValidateModel("generated-files/invalid.xmi");
+		
+		
+		try {
+			Document doc = ReportService.CreateReport(res);
+			ReportService.WriteXmlToFile(doc);
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TransformerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		boolean modelContainsError = false;
 		for(Diagnostic diag : res)
 		{
@@ -50,7 +70,7 @@ public class ValidatorServiceTest {
 	
 	@Test
 	public void ValidateGeneratedOutput(){
-		ArrayList<Diagnostic> res = service.ValidateModel("generated-files/generatedHTML.xmi");
+		List<Diagnostic> res = service.ValidateModel("generated-files/generatedHTML.xmi");
 		for(Diagnostic diag : res)
 		{
 			for(Diagnostic child : diag.getChildren())
@@ -59,18 +79,6 @@ public class ValidatorServiceTest {
 			}
 			assertTrue(diag.getChildren().size() == 0);
 		}
-	}
-	
-	@Ignore
-	@Test
-	public void ValidateModelUsingOCLConstraint(){
-		try{
-			service.ValidateModelwithConstraints();
-		}catch(Exception e)
-		{
-			System.out.println(e.getMessage());
-		}
-
 	}
 
 }

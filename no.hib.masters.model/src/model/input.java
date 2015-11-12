@@ -14,6 +14,7 @@ package model;
  * <ul>
  *   <li>{@link model.input#getType <em>Type</em>}</li>
  *   <li>{@link model.input#getLabelledBy <em>Labelled By</em>}</li>
+ *   <li>{@link model.input#getId <em>Id</em>}</li>
  * </ul>
  *
  * @see model.ModelPackage#getinput()
@@ -75,5 +76,32 @@ public interface input extends FormElement {
 	 * @generated
 	 */
 	void setLabelledBy(label value);
+
+	/**
+	 * Returns the value of the '<em><b>Id</b></em>' attribute.
+	 * The default value is <code>"-1"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Id</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Id</em>' attribute.
+	 * @see #setId(String)
+	 * @see model.ModelPackage#getinput_Id()
+	 * @model default="-1" required="true"
+	 * @generated
+	 */
+	String getId();
+
+	/**
+	 * Sets the value of the '{@link model.input#getId <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Id</em>' attribute.
+	 * @see #getId()
+	 * @generated
+	 */
+	void setId(String value);
 
 } // input

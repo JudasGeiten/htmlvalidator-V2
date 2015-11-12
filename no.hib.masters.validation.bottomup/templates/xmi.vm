@@ -6,17 +6,17 @@
     <steps stepTitle="" stepStyle="$key.getAttributes().getNamedItem("class").getNodeValue()">
     #foreach($item in $formSteps.get($key))
     	#if($item.getNodeName() == "label")
-	        <formElements xsi:type="htmlDoc:label" ID="$item.getAttributes().getNamedItem("id").getNodeValue()" 
+	        <formElements xsi:type="htmlDoc:label" id="$item.getAttributes().getNamedItem("id").getNodeValue()" 
 	        	for="$item.getAttributes().getNamedItem("for").getNodeValue()" value="$item.getTextContent()"
 	        	elementStyle="$item.getAttributes().getNamedItem("class").getNodeValue()" constrastRatio="$item.getAttributes().getNamedItem("ratio").getNodeValue()"/>
 	    #end
 	    #if($item.getNodeName() == "input")
-	    	 <formElements xsi:type="htmlDoc:input" ID="$item.getAttributes().getNamedItem("id").getNodeValue()"
+	    	 <formElements xsi:type="htmlDoc:input" id="$item.getAttributes().getNamedItem("id").getNodeValue()"
 	    	 labelledBy="$item.getAttributes().getNamedItem("labelledBy").getNodeValue()" 
 	    	 elementStyle="$item.getAttributes().getNamedItem("class").getNodeValue()"/>
 	    #end
 	    #if($item.getNodeName() == "image")
-	    	<formElements xsi:type="htmlDoc:Image" ID="$item.getAttributes().getNamedItem("id").getNodeValue()" />
+	    	<formElements xsi:type="htmlDoc:Image" id="$item.getAttributes().getNamedItem("id").getNodeValue()" />
 	    #end
     #end
     </steps>

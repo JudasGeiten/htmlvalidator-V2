@@ -26,7 +26,7 @@ declare function difiFunctions:to-result-format
 (: ****** PROTECTED SECTION ****** :)
 <results>{
 		[for (class : EClass | anEPackage.eClassifiers)]
-			[if(class.name = 'label')]
+			[if(class.name = 'label') or (class.name = 'img') or (class.name = 'input')]
 			[for (reference : EReference | class.eAllReferences)]				
 				[if(reference.lowerBound > 0)]
 				(: [class.name/] -> [reference.eType.name/] :)

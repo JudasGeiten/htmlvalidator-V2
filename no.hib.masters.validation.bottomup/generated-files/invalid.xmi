@@ -3,19 +3,19 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xmlns:htmlDoc="http://www.example.org/htmlDoc">
     <steps stepTitle="invalidForm">
-        		    	    	 <formElements xsi:type="htmlDoc:input" ID="inputFirstname2"
+        		    	    	 <formElements xsi:type="htmlDoc:input" id="inputFirstname2"
 	    	 labelledBy="" />
-	            		    	    	 <formElements xsi:type="htmlDoc:input" ID="inputSurname2"
+	            		    	    	 <formElements xsi:type="htmlDoc:input" id="inputSurname2"
 	    	 labelledBy="" />
 	            </steps>
     <steps stepTitle="validForm">
-        		        <formElements xsi:type="htmlDoc:label" ID="lblFirstname" 
+        		        <formElements xsi:type="htmlDoc:label" id="lblFirstname" 
 	        	for="inputFirstname" />
-	    	            		        <formElements xsi:type="htmlDoc:label" ID="lblSurname" 
+	    	            		        <formElements xsi:type="htmlDoc:label" id="lblSurname" 
 	        	for="inputSurname" />
-	    	            		    	    	 <formElements xsi:type="htmlDoc:input" ID="inputFirstname"
+	    	            		    	    	 <formElements xsi:type="htmlDoc:input" id="inputFirstname"
 	    	 labelledBy="lblFirstname" />
-	            		    	    	 <formElements xsi:type="htmlDoc:input" ID="inputSurname"
+	            		    	    	 <formElements xsi:type="htmlDoc:input" id="inputSurname"
 	    	 labelledBy="lblSurname" />
 	            </steps>
  

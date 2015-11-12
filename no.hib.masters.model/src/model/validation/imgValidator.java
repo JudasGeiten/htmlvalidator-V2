@@ -15,4 +15,6 @@ public interface imgValidator {
 	boolean validate();
 
 	boolean validateAlt(String value);
+
+	boolean validateTitle(String value);
 }

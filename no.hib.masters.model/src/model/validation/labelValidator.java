@@ -18,4 +18,6 @@ public interface labelValidator {
 	boolean validateValue(String value);
 	boolean validateFor(input value);
 	boolean validateConstrastRatio(double value);
+
+	boolean validateId(String value);
 }

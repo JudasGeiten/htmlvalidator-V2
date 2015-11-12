@@ -223,17 +223,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getFormElement_ID() {
-		return (EAttribute)formElementEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getFormElement_ElementStyle() {
-		return (EReference)formElementEClass.getEStructuralFeatures().get(1);
+		return (EReference)formElementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -277,6 +268,15 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getlabel_Id() {
+		return (EAttribute)labelEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getinput() {
 		return inputEClass;
 	}
@@ -297,6 +297,15 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 */
 	public EReference getinput_LabelledBy() {
 		return (EReference)inputEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getinput_Id() {
+		return (EAttribute)inputEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -409,17 +418,18 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		createEReference(formStepEClass, FORM_STEP__STEP_STYLE);
 
 		formElementEClass = createEClass(FORM_ELEMENT);
-		createEAttribute(formElementEClass, FORM_ELEMENT__ID);
 		createEReference(formElementEClass, FORM_ELEMENT__ELEMENT_STYLE);
 
 		labelEClass = createEClass(LABEL);
 		createEAttribute(labelEClass, LABEL__VALUE);
 		createEReference(labelEClass, LABEL__FOR);
 		createEAttribute(labelEClass, LABEL__CONSTRAST_RATIO);
+		createEAttribute(labelEClass, LABEL__ID);
 
 		inputEClass = createEClass(INPUT);
 		createEAttribute(inputEClass, INPUT__TYPE);
 		createEReference(inputEClass, INPUT__LABELLED_BY);
+		createEAttribute(inputEClass, INPUT__ID);
 
 		cssStyleEClass = createEClass(CSS_STYLE);
 		createEAttribute(cssStyleEClass, CSS_STYLE__SELECTOR);
@@ -476,17 +486,18 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEReference(getFormStep_StepStyle(), this.getCssStyle(), null, "stepStyle", null, 0, -1, FormStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(formElementEClass, FormElement.class, "FormElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getFormElement_ID(), ecorePackage.getEString(), "ID", null, 1, 1, FormElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFormElement_ElementStyle(), this.getCssStyle(), null, "elementStyle", null, 0, -1, FormElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(labelEClass, label.class, "label", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getlabel_Value(), ecorePackage.getEString(), "value", null, 1, 1, label.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getlabel_Value(), ecorePackage.getEString(), "value", null, 0, 1, label.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getlabel_For(), this.getinput(), this.getinput_LabelledBy(), "for", null, 1, 1, label.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getlabel_ConstrastRatio(), ecorePackage.getEDouble(), "constrastRatio", null, 0, 1, label.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getlabel_Id(), ecorePackage.getEString(), "id", null, 0, 1, label.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(inputEClass, input.class, "input", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getinput_Type(), ecorePackage.getEString(), "type", "text", 1, 1, input.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getinput_LabelledBy(), this.getlabel(), this.getlabel_For(), "labelledBy", null, 1, 1, input.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getinput_Id(), ecorePackage.getEString(), "id", "-1", 1, 1, input.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(cssStyleEClass, CssStyle.class, "CssStyle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCssStyle_Selector(), ecorePackage.getEString(), "selector", null, 1, 1, CssStyle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

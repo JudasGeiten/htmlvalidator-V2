@@ -17,6 +17,8 @@ import org.eclipse.emf.common.util.EList;
 public interface FormElementValidator {
 	boolean validate();
 
+	boolean validateId(String value);
+
 	boolean validateID(String value);
 	boolean validateElementStyle(EList<CssStyle> value);
 }

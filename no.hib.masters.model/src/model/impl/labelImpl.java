@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link model.impl.labelImpl#getValue <em>Value</em>}</li>
  *   <li>{@link model.impl.labelImpl#getFor <em>For</em>}</li>
  *   <li>{@link model.impl.labelImpl#getConstrastRatio <em>Constrast Ratio</em>}</li>
+ *   <li>{@link model.impl.labelImpl#getId <em>Id</em>}</li>
  * </ul>
  *
  * @generated
@@ -79,6 +80,26 @@ public class labelImpl extends FormElementImpl implements label {
 	 * @ordered
 	 */
 	protected double constrastRatio = CONSTRAST_RATIO_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getId()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String ID_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getId()
+	 * @generated
+	 * @ordered
+	 */
+	protected String id = ID_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -206,6 +227,27 @@ public class labelImpl extends FormElementImpl implements label {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getId() {
+		return id;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setId(String newId) {
+		String oldId = id;
+		id = newId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.LABEL__ID, oldId, id));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -246,6 +288,8 @@ public class labelImpl extends FormElementImpl implements label {
 				return basicGetFor();
 			case ModelPackage.LABEL__CONSTRAST_RATIO:
 				return getConstrastRatio();
+			case ModelPackage.LABEL__ID:
+				return getId();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -266,6 +310,9 @@ public class labelImpl extends FormElementImpl implements label {
 				return;
 			case ModelPackage.LABEL__CONSTRAST_RATIO:
 				setConstrastRatio((Double)newValue);
+				return;
+			case ModelPackage.LABEL__ID:
+				setId((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -288,6 +335,9 @@ public class labelImpl extends FormElementImpl implements label {
 			case ModelPackage.LABEL__CONSTRAST_RATIO:
 				setConstrastRatio(CONSTRAST_RATIO_EDEFAULT);
 				return;
+			case ModelPackage.LABEL__ID:
+				setId(ID_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -306,6 +356,8 @@ public class labelImpl extends FormElementImpl implements label {
 				return for_ != null;
 			case ModelPackage.LABEL__CONSTRAST_RATIO:
 				return constrastRatio != CONSTRAST_RATIO_EDEFAULT;
+			case ModelPackage.LABEL__ID:
+				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -324,6 +376,8 @@ public class labelImpl extends FormElementImpl implements label {
 		result.append(value);
 		result.append(", constrastRatio: ");
 		result.append(constrastRatio);
+		result.append(", id: ");
+		result.append(id);
 		result.append(')');
 		return result.toString();
 	}

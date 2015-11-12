@@ -15,6 +15,7 @@ package model;
  *   <li>{@link model.label#getValue <em>Value</em>}</li>
  *   <li>{@link model.label#getFor <em>For</em>}</li>
  *   <li>{@link model.label#getConstrastRatio <em>Constrast Ratio</em>}</li>
+ *   <li>{@link model.label#getId <em>Id</em>}</li>
  * </ul>
  *
  * @see model.ModelPackage#getlabel()
@@ -33,7 +34,7 @@ public interface label extends FormElement {
 	 * @return the value of the '<em>Value</em>' attribute.
 	 * @see #setValue(String)
 	 * @see model.ModelPackage#getlabel_Value()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	String getValue();
@@ -101,5 +102,31 @@ public interface label extends FormElement {
 	 * @generated
 	 */
 	void setConstrastRatio(double value);
+
+	/**
+	 * Returns the value of the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Id</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Id</em>' attribute.
+	 * @see #setId(String)
+	 * @see model.ModelPackage#getlabel_Id()
+	 * @model
+	 * @generated
+	 */
+	String getId();
+
+	/**
+	 * Sets the value of the '{@link model.label#getId <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Id</em>' attribute.
+	 * @see #getId()
+	 * @generated
+	 */
+	void setId(String value);
 
 } // label

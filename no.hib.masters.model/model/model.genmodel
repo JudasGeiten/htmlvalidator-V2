@@ -16,17 +16,18 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//FormStep/stepStyle"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//FormElement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//FormElement/ID"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//FormElement/elementStyle"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//label">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//label/value"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//label/for"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//label/constrastRatio"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//label/id"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//input">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//input/type"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//input/labelledBy"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//input/id"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//CssStyle">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//CssStyle/selector"/>

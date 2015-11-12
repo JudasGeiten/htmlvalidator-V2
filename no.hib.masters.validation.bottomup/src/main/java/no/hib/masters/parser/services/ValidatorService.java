@@ -44,8 +44,8 @@ public class ValidatorService {
 
 	}
 
-	public ArrayList<Diagnostic> ValidateModel(String path) {
-		ArrayList<Diagnostic> res = new ArrayList<Diagnostic>();
+	public List<Diagnostic> ValidateModel(String path) {
+		List<Diagnostic> res = new ArrayList<Diagnostic>();
 		try {
 			Resource resource = resourceSet.getResource(URI.createURI(path), true);
 			for (EObject eObject : resource.getContents()) {
@@ -66,56 +66,5 @@ public class ValidatorService {
 		for (Diagnostic child : diagnostic.getChildren()) {
 			printDiagnostic(child, indent + "  ");
 		}
-	}
-
-	public void ValidateModelwithConstraints() throws IOException, ParserException {
-		EPackage.Registry registry = new EPackageRegistryImpl();
-		registry.put(ModelPackage.eNS_URI, ModelPackage.eINSTANCE);
-		EcoreEnvironmentFactory environmentFactory = new EcoreEnvironmentFactory(registry);
-		// OCL ocl = OCL.newInstance(environmentFactory);
-
-		OCL<?, EClassifier, ?, ?, ?, ?, ?, ?, ?, Constraint, EClass, EObject> ocl;
-		ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
-
-		// get an OCL text file via some hypothetical API
-
-		InputStream in = new FileInputStream(getClass().getResource("/constrast.ocl").getPath());
-
-		Map<String, Constraint> constraintMap = new HashMap<String, Constraint>();
-
-		// parse the contents as an OCL document
-		try {
-			OCLInput document = new OCLInput(in);
-
-			List<Constraint> constraints = ocl.parse(document);
-			for (Constraint next : constraints) {
-				constraintMap.put(next.getName(), next);
-
-				OCLExpression<EClassifier> body = next.getSpecification().getBodyExpression();
-				System.out.printf("%s: %s%n", next.getName(), body);
-			}
-		} catch (ParserException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			in.close();
-		}
-
-		// model model = getLibrary(); // get library from a hypothetical source
-
-		OCLHelper<EClassifier, ?, ?, Constraint> helper = ocl.createOCLHelper();
-
-		// use the constraints defined in the OCL document
-
-		// use the getBooks() additional operation to find a book
-		helper.setContext(ModelPackage.Literals.LABEL);
-		OCLExpression<EClassifier> query = helper.createQuery("constrastRatio >= 7");
-
-		// Book book = (Book) ocl.evaluate(library, query);
-		// System.out.printf("Got book: %s%n", book);
-
-		// use the unique_title constraint to validate the book
-		// System.out.printf("Validate book: %b%n", ocl.check(book,
-		// constraintMap.get("unique_title")));
 	}
 }

@@ -1,10 +1,14 @@
+
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
 <title>Form example</title>
 </head>
 
-<style>
+<style id="test">
 .inputForm {
 	background-color: #008888;
 	padding: 3em;
@@ -38,17 +42,17 @@ fieldset{
 </style>
 
 <body>
-	<img src="https://www.aventia.no/wp-content/uploads/2012/02/acos-logo-150x150.png" alt="pikk"/>
+	<img src="https://www.aventia.no/wp-content/uploads/2012/02/acos-logo-150x150.png" />
 	<img src="https://www.aventia.no/wp-content/uploads/2012/02/acos-logo-150x150.png" alt="logo"/>
 	<fieldset >
 		<legend>
 			<strong>Form</strong>
 		</legend>
 		<form id="validForm" class="inputForm">
-			<label class="inputLabel" for="ValidInputFirstname" id="lblFirstname">Firstname</label>
-			<input class="inputField" type="text" id="ValidInputFirstname" /> <label
-				class="inputLabel" for="ValidInputSurname" id="lblSurname">Surname</label>
-			<input class="inputField" type="text" id="ValidInputSurname" />
+			<label class="inputLabel" for="inputFirstname" id="lblFirstname">Firstname</label>
+			<input class="inputField" type="text" id="inputFirstname" /> <label
+				class="inputLabel" for="inputSurname" id="lblSurname">Surname</label>
+			<input class="inputField" type="text" id="inputSurname" />
 			<button class="inputButton" type="submit">Submit</button>
 
 		</form>
@@ -63,22 +67,8 @@ fieldset{
 				placeholder="Firstname" /> <input class="inputField" type="text"
 				id="inputSurname2" placeholder="Surname" />
 			<button class="inputButton" type="submit">Submit</button>
-		</form>
-	</fieldset>
-  
-  	<fieldset >
-		<legend>
-			<strong>Form</strong>
-		</legend>
-		<form id="validForm" class="inputForm">
-			<label class="inputLabel" id="UnlinkedlblFirstname">Firstname</label>
-			<input class="inputField" type="text" id="UnlinkedInputFirstname" /> <label
-				class="inputLabel" id="UnlinkedlblSurname">Surname</label>
-			<input class="inputField" type="text" id="UnlinkedInputSurname" />
-			<button class="inputButton" type="submit">Submit</button>
 
 		</form>
 	</fieldset>
-  
 </body>
 </html>

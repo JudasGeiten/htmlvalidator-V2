@@ -17,17 +17,18 @@ Package model <http://www.example.org/htmlDoc>
     Reference stepStyle : CssStyle<<0..*>>
 
   Class FormElement
-    Attribute ID : EString<<1..1>>
     Reference elementStyle : CssStyle<<0..*>>
 
   Class label -> FormElement
-    Attribute value : EString<<1..1>>
+    Attribute value : EString
     Reference for : input<<1..1>>
     Attribute constrastRatio : EDouble
+    Attribute id : EString
 
   Class input -> FormElement
     Attribute type : EString<<1..1>>
     Reference labelledBy : label<<1..1>>
+    Attribute id : EString<<1..1>>
 
   Class CssStyle
     Attribute selector : EString<<1..1>>

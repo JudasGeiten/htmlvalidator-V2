@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<htmlDoc:HtmlRoot xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:htmlDoc="http://www.example.org/htmlDoc">
+    <steps stepTitle="" stepStyle="inputForm">
+        		        <formElements xsi:type="htmlDoc:label" id="lblFirstname" 
+	        	for="inputFirstname" value="Firstname"
+	        	elementStyle="inputLabel" constrastRatio="1.1"/>
+	    	    	            		        <formElements xsi:type="htmlDoc:label" id="lblSurname" 
+	        	for="inputSurname" value="Surname"
+	        	elementStyle="inputLabel" constrastRatio="1.1"/>
+	    	    	            		    	    	 <formElements xsi:type="htmlDoc:input" id="inputFirstname"
+	    	 labelledBy="lblFirstname" 
+	    	 elementStyle="inputField"/>
+	    	            		    	    	 <formElements xsi:type="htmlDoc:input" id="inputSurname"
+	    	 labelledBy="lblSurname" 
+	    	 elementStyle="inputField"/>
+	    	            </steps>
+    <steps stepTitle="" stepStyle="inputForm">
+        		    	    	 <formElements xsi:type="htmlDoc:input" id="inputFirstname2"
+	    	 labelledBy="" 
+	    	 elementStyle="inputField"/>
+	    	            		    	    	 <formElements xsi:type="htmlDoc:input" id="inputSurname2"
+	    	 labelledBy="" 
+	    	 elementStyle="inputField"/>
+	    	            </steps>
+	<cssStyles selector="inputField">
+					<cssDeclarations property="border-radius" value="5px"/>
+					<cssDeclarations property="border" value="solid grey 1px"/>
+					<cssDeclarations property="padding" value="0.5em 0"/>
+			</cssStyles>
+	<cssStyles selector="inputButton">
+					<cssDeclarations property="padding" value="0.5em"/>
+					<cssDeclarations property="clear" value="both"/>
+					<cssDeclarations property="margin-top" value="3em"/>
+					<cssDeclarations property="float" value="right"/>
+			</cssStyles>
+	<cssStyles selector="fieldset">
+					<cssDeclarations property="border" value="0"/>
+					<cssDeclarations property="width" value="500px"/>
+			</cssStyles>
+	<cssStyles selector="inputLabel">
+					<cssDeclarations property="color" value="#0088dd"/>
+					<cssDeclarations property="font-weight" value="bold"/>
+			</cssStyles>
+	<cssStyles selector="inputForm">
+					<cssDeclarations property="background-color" value="#008888"/>
+					<cssDeclarations property="padding" value="3em"/>
+					<cssDeclarations property="margin" value="auto"/>
+					<cssDeclarations property="width" value="500px"/>
+					<cssDeclarations property="margin-bottom" value="5em"/>
+			</cssStyles>
+ </htmlDoc:HtmlRoot>

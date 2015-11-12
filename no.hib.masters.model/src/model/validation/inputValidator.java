@@ -17,4 +17,8 @@ public interface inputValidator {
 
 	boolean validateType(String value);
 	boolean validateLabelledBy(label value);
+
+	boolean validateId(String value);
+
+	boolean validateId(int value);
 }

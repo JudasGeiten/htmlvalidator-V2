@@ -76,9 +76,13 @@ public class HtmlParser implements IParser {
 	}
 
 	public void WriteXmiToFile(String xmi) {
+		WriteXmiToFile(xmi, "generatedHTML.xmi");
+	}
+	
+	public void WriteXmiToFile(String xmi, String title) {
 		PrintWriter writer;
 		try {
-			writer = new PrintWriter("generated-files/generatedHTML.xmi", "UTF-8");
+			writer = new PrintWriter("generated-files/" + title + ".xmi", "UTF-8");
 			writer.println(xmi);
 			writer.close();
 		} catch (Exception e) {

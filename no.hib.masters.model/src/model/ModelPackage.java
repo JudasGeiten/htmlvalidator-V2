@@ -169,22 +169,13 @@ public interface ModelPackage extends EPackage {
 	int FORM_ELEMENT = 2;
 
 	/**
-	 * The feature id for the '<em><b>ID</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FORM_ELEMENT__ID = 0;
-
-	/**
 	 * The feature id for the '<em><b>Element Style</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FORM_ELEMENT__ELEMENT_STYLE = 1;
+	int FORM_ELEMENT__ELEMENT_STYLE = 0;
 
 	/**
 	 * The number of structural features of the '<em>Form Element</em>' class.
@@ -193,7 +184,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FORM_ELEMENT_FEATURE_COUNT = 2;
+	int FORM_ELEMENT_FEATURE_COUNT = 1;
 
 	/**
 	 * The number of operations of the '<em>Form Element</em>' class.
@@ -213,15 +204,6 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	int LABEL = 3;
-
-	/**
-	 * The feature id for the '<em><b>ID</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LABEL__ID = FORM_ELEMENT__ID;
 
 	/**
 	 * The feature id for the '<em><b>Element Style</b></em>' reference list.
@@ -260,13 +242,22 @@ public interface ModelPackage extends EPackage {
 	int LABEL__CONSTRAST_RATIO = FORM_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LABEL__ID = FORM_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>label</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LABEL_FEATURE_COUNT = FORM_ELEMENT_FEATURE_COUNT + 3;
+	int LABEL_FEATURE_COUNT = FORM_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>label</em>' class.
@@ -286,15 +277,6 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	int INPUT = 4;
-
-	/**
-	 * The feature id for the '<em><b>ID</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INPUT__ID = FORM_ELEMENT__ID;
 
 	/**
 	 * The feature id for the '<em><b>Element Style</b></em>' reference list.
@@ -324,13 +306,22 @@ public interface ModelPackage extends EPackage {
 	int INPUT__LABELLED_BY = FORM_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INPUT__ID = FORM_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>input</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INPUT_FEATURE_COUNT = FORM_ELEMENT_FEATURE_COUNT + 2;
+	int INPUT_FEATURE_COUNT = FORM_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>input</em>' class.
@@ -442,15 +433,6 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	int IMG = 7;
-
-	/**
-	 * The feature id for the '<em><b>ID</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMG__ID = FORM_ELEMENT__ID;
 
 	/**
 	 * The feature id for the '<em><b>Element Style</b></em>' reference list.
@@ -575,17 +557,6 @@ public interface ModelPackage extends EPackage {
 	EClass getFormElement();
 
 	/**
-	 * Returns the meta object for the attribute '{@link model.FormElement#getID <em>ID</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>ID</em>'.
-	 * @see model.FormElement#getID()
-	 * @see #getFormElement()
-	 * @generated
-	 */
-	EAttribute getFormElement_ID();
-
-	/**
 	 * Returns the meta object for the reference list '{@link model.FormElement#getElementStyle <em>Element Style</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -640,6 +611,17 @@ public interface ModelPackage extends EPackage {
 	EAttribute getlabel_ConstrastRatio();
 
 	/**
+	 * Returns the meta object for the attribute '{@link model.label#getId <em>Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Id</em>'.
+	 * @see model.label#getId()
+	 * @see #getlabel()
+	 * @generated
+	 */
+	EAttribute getlabel_Id();
+
+	/**
 	 * Returns the meta object for class '{@link model.input <em>input</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -670,6 +652,17 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getinput_LabelledBy();
+
+	/**
+	 * Returns the meta object for the attribute '{@link model.input#getId <em>Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Id</em>'.
+	 * @see model.input#getId()
+	 * @see #getinput()
+	 * @generated
+	 */
+	EAttribute getinput_Id();
 
 	/**
 	 * Returns the meta object for class '{@link model.CssStyle <em>Css Style</em>}'.
@@ -850,14 +843,6 @@ public interface ModelPackage extends EPackage {
 		EClass FORM_ELEMENT = eINSTANCE.getFormElement();
 
 		/**
-		 * The meta object literal for the '<em><b>ID</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FORM_ELEMENT__ID = eINSTANCE.getFormElement_ID();
-
-		/**
 		 * The meta object literal for the '<em><b>Element Style</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -900,6 +885,14 @@ public interface ModelPackage extends EPackage {
 		EAttribute LABEL__CONSTRAST_RATIO = eINSTANCE.getlabel_ConstrastRatio();
 
 		/**
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LABEL__ID = eINSTANCE.getlabel_Id();
+
+		/**
 		 * The meta object literal for the '{@link model.impl.inputImpl <em>input</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -924,6 +917,14 @@ public interface ModelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference INPUT__LABELLED_BY = eINSTANCE.getinput_LabelledBy();
+
+		/**
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INPUT__ID = eINSTANCE.getinput_Id();
 
 		/**
 		 * The meta object literal for the '{@link model.impl.CssStyleImpl <em>Css Style</em>}' class.

@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <ul>
  *   <li>{@link model.impl.inputImpl#getType <em>Type</em>}</li>
  *   <li>{@link model.impl.inputImpl#getLabelledBy <em>Labelled By</em>}</li>
+ *   <li>{@link model.impl.inputImpl#getId <em>Id</em>}</li>
  * </ul>
  *
  * @generated
@@ -58,6 +59,26 @@ public class inputImpl extends FormElementImpl implements input {
 	 * @ordered
 	 */
 	protected label labelledBy;
+
+	/**
+	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getId()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String ID_EDEFAULT = "-1";
+
+	/**
+	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getId()
+	 * @generated
+	 * @ordered
+	 */
+	protected String id = ID_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -164,6 +185,27 @@ public class inputImpl extends FormElementImpl implements input {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getId() {
+		return id;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setId(String newId) {
+		String oldId = id;
+		id = newId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.INPUT__ID, oldId, id));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -202,6 +244,8 @@ public class inputImpl extends FormElementImpl implements input {
 			case ModelPackage.INPUT__LABELLED_BY:
 				if (resolve) return getLabelledBy();
 				return basicGetLabelledBy();
+			case ModelPackage.INPUT__ID:
+				return getId();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -219,6 +263,9 @@ public class inputImpl extends FormElementImpl implements input {
 				return;
 			case ModelPackage.INPUT__LABELLED_BY:
 				setLabelledBy((label)newValue);
+				return;
+			case ModelPackage.INPUT__ID:
+				setId((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -238,6 +285,9 @@ public class inputImpl extends FormElementImpl implements input {
 			case ModelPackage.INPUT__LABELLED_BY:
 				setLabelledBy((label)null);
 				return;
+			case ModelPackage.INPUT__ID:
+				setId(ID_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -254,6 +304,8 @@ public class inputImpl extends FormElementImpl implements input {
 				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
 			case ModelPackage.INPUT__LABELLED_BY:
 				return labelledBy != null;
+			case ModelPackage.INPUT__ID:
+				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -270,6 +322,8 @@ public class inputImpl extends FormElementImpl implements input {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (type: ");
 		result.append(type);
+		result.append(", id: ");
+		result.append(id);
 		result.append(')');
 		return result.toString();
 	}
